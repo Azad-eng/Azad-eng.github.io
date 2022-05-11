@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="RaoYuLin">
+    
+    <title>
+        
+            nsis安装包脚本 |
+        
+        AZAD&#39;S SPACE
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/alien.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/ghost.png","favicon":"/images/alien.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/ghost.png","description":"Keep writing and Keep going."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/share.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+                AZAD&#39;S SPACE
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">nsis安装包脚本</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ghost.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">RaoYuLin</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-04-27 17:06:48</span>
+        <span class="mobile">2022-04-27 17:06</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/nsis/">nsis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p> 使用nsis制作Java程序安装包的记录，nsis还可以直接把jar包生成exe可执行文件，目前使用launch4j来制作exe。具体参考官网<a class="link"   target="_blank" rel="noopener" href="https://nsis.sourceforge.io/A_slightly_better_Java_Launcher" >nsis <i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="常用变量"><a href="#常用变量" class="headerlink" title="常用变量"></a>常用变量</h3><figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$INSTDIR</span></span><br></pre></td></tr></table></figure>
+<p>用户定义的解压路径</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$PROGRAMFILES</span></span><br></pre></td></tr></table></figure>
+<p>程序文件目录</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;NSISDIR&#125;</span></span><br></pre></td></tr></table></figure>
+<p>包含 NSIS 安装目录的一个标记。在编译时会检测到。常用于在你想调用一个在 NSIS 目录下的资源时，例如：图标、界面…</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$STARTMENU</span></span><br></pre></td></tr></table></figure>
+<p>开始菜单目录</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$SMPROGRAMS</span></span><br></pre></td></tr></table></figure>
+<p>开始菜单程序目录</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; 该脚本使用 HM VNISEdit 脚本编辑器向导产生</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; 安装程序初始定义常量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">!define</span> INSTDIR <span class="string">&quot;E:\nsis\nsis_test&quot;</span></span><br><span class="line"><span class="keyword">!define</span> PRODUCT_NAME <span class="string">&quot;EFL_PotatoOSp-8601Series&quot;</span></span><br><span class="line"><span class="keyword">!define</span> PRODUCT_VERSION <span class="string">&quot;1.2.7-alpha&quot;</span></span><br><span class="line"><span class="keyword">!define</span> PRODUCT_PUBLISHER <span class="string">&quot;Engineering For Life&quot;</span></span><br><span class="line"><span class="keyword">!define</span> PRODUCT_WEB_SITE <span class="string">&quot;http://www.efl-tech.com/&quot;</span></span><br><span class="line"><span class="keyword">!define</span> PRODUCT_DIR_REGKEY <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\App Paths\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.exe&quot;</span></span><br><span class="line"><span class="keyword">!define</span> PRODUCT_UNINST_KEY <span class="string">&quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">!define</span> PRODUCT_UNINST_ROOT_KEY <span class="string">&quot;HKLM&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SetCompressor</span> <span class="literal">lzma</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; ------ MUI 现代界面定义 (1.67 版本以上兼容) ------</span></span><br><span class="line"><span class="keyword">!include</span> <span class="string">&quot;MUI.nsh&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; MUI 预定义常量</span></span><br><span class="line"><span class="keyword">!define</span> MUI_ABORTWARNING</span><br><span class="line"><span class="keyword">!define</span> MUI_ICON <span class="string">&quot;E:\test\exe\icons\8601P.ico&quot;</span></span><br><span class="line"><span class="keyword">!define</span> MUI_UNICON <span class="string">&quot;<span class="variable">$&#123;NSISDIR&#125;</span>\Contrib\Graphics\Icons\modern-uninstall.ico&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; 欢迎页面</span></span><br><span class="line"><span class="keyword">!insertmacro</span> MUI_PAGE_WELCOME</span><br><span class="line"><span class="comment">; 安装目录选择页面</span></span><br><span class="line"><span class="keyword">!insertmacro</span> MUI_PAGE_DIRECTORY</span><br><span class="line"><span class="comment">; 安装过程页面</span></span><br><span class="line"><span class="keyword">!insertmacro</span> MUI_PAGE_INSTFILES</span><br><span class="line"><span class="comment">; 安装完成页面</span></span><br><span class="line"><span class="keyword">!define</span> MUI_FINISHPAGE_RUN <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.exe&quot;</span></span><br><span class="line"><span class="keyword">!insertmacro</span> MUI_PAGE_FINISH</span><br><span class="line"><span class="keyword">!define</span> MUI_FINISHPAGE_RUN_PARAMETERS <span class="string">&quot;-Dprism.order=sw&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; 安装卸载过程页面</span></span><br><span class="line"><span class="keyword">!insertmacro</span> MUI_UNPAGE_INSTFILES</span><br><span class="line"><span class="comment">; 安装界面包含的语言设置</span></span><br><span class="line"><span class="keyword">!insertmacro</span> MUI_LANGUAGE <span class="string">&quot;SimpChinese&quot;</span></span><br><span class="line"><span class="comment">; 安装预释放文件</span></span><br><span class="line"><span class="keyword">!insertmacro</span> MUI_RESERVEFILE_INSTALLOPTIONS</span><br><span class="line"><span class="comment">; ------ MUI 现代界面定义结束 ------</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">;引入nsh脚本-判断系统</span></span><br><span class="line"><span class="keyword">!include</span> <span class="string">&quot;x64.nsh&quot;</span></span><br><span class="line"><span class="keyword">Name</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_NAME&#125;</span> <span class="variable">$&#123;PRODUCT_VERSION&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">OutFile</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_NAME&#125;</span>_setup.exe&quot;</span></span><br><span class="line"><span class="keyword">InstallDirRegKey</span> <span class="params">HKLM</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_UNINST_KEY&#125;</span>&quot;</span> <span class="string">&quot;UninstallString&quot;</span></span><br><span class="line"><span class="keyword">ShowInstDetails</span> <span class="literal">show</span></span><br><span class="line"><span class="keyword">ShowUnInstDetails</span> <span class="literal">show</span></span><br><span class="line"><span class="keyword">BrandingText</span> <span class="string">&quot;EFL, Inc. &quot;</span></span><br><span class="line"><span class="keyword">Section</span> <span class="string">&quot;Test&quot;</span> Test</span><br><span class="line">      <span class="keyword">SetOutPath</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>&quot;</span></span><br><span class="line"><span class="keyword">SectionEnd</span></span><br><span class="line"><span class="keyword">Function</span> <span class="title function_">.onInit</span></span><br><span class="line">      <span class="comment">#安装目录设置</span></span><br><span class="line">      <span class="variable">$&#123;If&#125;</span> <span class="variable">$&#123;RunningX64&#125;</span></span><br><span class="line">      <span class="keyword">StrCpy</span> <span class="variable">$INSTDIR</span> <span class="string">&quot;<span class="variable constant_">$PROGRAMFILES64</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>&quot;</span></span><br><span class="line">      <span class="variable">$&#123;else&#125;</span></span><br><span class="line">      <span class="keyword">StrCpy</span> <span class="variable">$INSTDIR</span> <span class="string">&quot;<span class="variable constant_">$PROGRAMFILES</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>&quot;</span></span><br><span class="line">      <span class="variable">$&#123;EndIf&#125;</span></span><br><span class="line"><span class="keyword">FunctionEnd</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Section</span> <span class="string">&quot;MainSection&quot;</span> SEC01</span><br><span class="line">  <span class="keyword">SetOverwrite</span> <span class="literal">ifdiff</span></span><br><span class="line">  <span class="keyword">RMDir</span> /r <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\预置模型&quot;</span></span><br><span class="line">  <span class="keyword">RMDir</span> /r <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\update&quot;</span></span><br><span class="line">  <span class="keyword">RMDir</span> /r <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\bin\Slic3r&quot;</span></span><br><span class="line">  <span class="keyword">RMDIR</span> /r <span class="string">&quot;<span class="variable constant_">$SMPROGRAMS</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>&quot;</span></span><br><span class="line">  <span class="keyword">SetOutPath</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\bin&quot;</span></span><br><span class="line">  <span class="keyword">File</span> /r <span class="string">&quot;E:\test\exe\bin\*.*&quot;</span></span><br><span class="line">  <span class="keyword">SetOutPath</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\image&quot;</span></span><br><span class="line">  <span class="keyword">File</span> /r <span class="string">&quot;E:\test\exe\image\*.*&quot;</span></span><br><span class="line">  <span class="keyword">SetOutPath</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\jre&quot;</span></span><br><span class="line">  <span class="keyword">File</span> /r <span class="string">&quot;E:\test\exe\jre\*.*&quot;</span></span><br><span class="line">  <span class="keyword">SetOutPath</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\libs&quot;</span></span><br><span class="line">  <span class="keyword">File</span> /r <span class="string">&quot;E:\test\exe\libs\*.*&quot;</span></span><br><span class="line">  <span class="keyword">SetOutPath</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\stl&quot;</span></span><br><span class="line">  <span class="keyword">File</span> /r <span class="string">&quot;E:\test\exe\stl\*.*&quot;</span></span><br><span class="line">  <span class="keyword">SetOutPath</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\update&quot;</span></span><br><span class="line">  <span class="keyword">File</span> /r <span class="string">&quot;E:\test\exe\update\*.*&quot;</span></span><br><span class="line">  <span class="keyword">SetOutPath</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\预置模型&quot;</span></span><br><span class="line">  <span class="keyword">File</span> /r <span class="string">&quot;E:\test\exe\预置模型\*.*&quot;</span></span><br><span class="line">  <span class="keyword">SetOutPath</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>&quot;</span></span><br><span class="line">  <span class="keyword">File</span> <span class="string">&quot;E:\test\exe\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.exe&quot;</span></span><br><span class="line">  <span class="comment">; 创建开始菜单快捷方式</span></span><br><span class="line">  <span class="keyword">CreateDirectory</span> <span class="string">&quot;<span class="variable constant_">$SMPROGRAMS</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>&quot;</span></span><br><span class="line">  <span class="keyword">CreateShortCut</span> <span class="string">&quot;<span class="variable constant_">$SMPROGRAMS</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.lnk&quot;</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.exe&quot;</span></span><br><span class="line">  <span class="comment">; 创建桌面菜单快捷方式</span></span><br><span class="line">  <span class="keyword">CreateShortCut</span> <span class="string">&quot;<span class="variable constant_">$DESKTOP</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.lnk&quot;</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.exe&quot;</span></span><br><span class="line"><span class="keyword">SectionEnd</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Section</span> -AdditionalIcons</span><br><span class="line">  <span class="keyword">WriteIniStr</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\EFL官网.url&quot;</span> <span class="string">&quot;InternetShortcut&quot;</span> <span class="string">&quot;URL&quot;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_WEB_SITE&#125;</span>&quot;</span></span><br><span class="line">  <span class="keyword">WriteIniStr</span> <span class="string">&quot;<span class="variable constant_">$SMPROGRAMS</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>\EFL官网.url&quot;</span> <span class="string">&quot;InternetShortcut&quot;</span> <span class="string">&quot;URL&quot;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_WEB_SITE&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">SectionEnd</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Section</span> -Post</span><br><span class="line">  <span class="keyword">WriteUninstaller</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\uninst.exe&quot;</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="params">HKLM</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_DIR_REGKEY&#125;</span>&quot;</span> <span class="string">&quot;&quot;</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.exe&quot;</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="variable">$&#123;PRODUCT_UNINST_ROOT_KEY&#125;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_UNINST_KEY&#125;</span>&quot;</span> <span class="string">&quot;DisplayName&quot;</span> <span class="string">&quot;<span class="variable">$(^Name)</span>&quot;</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="variable">$&#123;PRODUCT_UNINST_ROOT_KEY&#125;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_UNINST_KEY&#125;</span>&quot;</span> <span class="string">&quot;UninstallString&quot;</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\uninst.exe&quot;</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="variable">$&#123;PRODUCT_UNINST_ROOT_KEY&#125;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_UNINST_KEY&#125;</span>&quot;</span> <span class="string">&quot;DisplayIcon&quot;</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span><span class="variable">$&#123;PRODUCT_NAME&#125;</span>.exe&quot;</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="variable">$&#123;PRODUCT_UNINST_ROOT_KEY&#125;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_UNINST_KEY&#125;</span>&quot;</span> <span class="string">&quot;DisplayVersion&quot;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_VERSION&#125;</span>&quot;</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="variable">$&#123;PRODUCT_UNINST_ROOT_KEY&#125;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_UNINST_KEY&#125;</span>&quot;</span> <span class="string">&quot;URLInfoAbout&quot;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_WEB_SITE&#125;</span>&quot;</span></span><br><span class="line">  <span class="keyword">WriteRegStr</span> <span class="variable">$&#123;PRODUCT_UNINST_ROOT_KEY&#125;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_UNINST_KEY&#125;</span>&quot;</span> <span class="string">&quot;Publisher&quot;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_PUBLISHER&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">SectionEnd</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************</span></span><br><span class="line"><span class="comment"> *  以下是安装程序的卸载部分  *</span></span><br><span class="line"><span class="comment"> ******************************/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Section</span> Uninstall</span><br><span class="line">  <span class="keyword">Delete</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\EFL官网.url&quot;</span></span><br><span class="line">  <span class="keyword">Delete</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\uninst.exe&quot;</span></span><br><span class="line">  <span class="keyword">Delete</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.exe&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">Delete</span> <span class="string">&quot;<span class="variable constant_">$SMPROGRAMS</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.lnk&quot;</span></span><br><span class="line">  <span class="keyword">Delete</span> <span class="string">&quot;<span class="variable constant_">$SMPROGRAMS</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>\EFL官网.url&quot;</span></span><br><span class="line">  <span class="keyword">Delete</span> <span class="string">&quot;<span class="variable constant_">$DESKTOP</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.lnk&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">RMDir</span> /r <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\预置模型&quot;</span></span><br><span class="line">  <span class="keyword">RMDir</span> /r <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\update&quot;</span></span><br><span class="line">  <span class="keyword">RMDir</span> /r <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\stl&quot;</span></span><br><span class="line">  <span class="keyword">RMDir</span> /r <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\jre&quot;</span></span><br><span class="line">  <span class="keyword">RMDir</span> /r <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\libs&quot;</span></span><br><span class="line">  <span class="keyword">RMDir</span> /r <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\image&quot;</span></span><br><span class="line">  <span class="keyword">RMDir</span> /r <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\bin&quot;</span></span><br><span class="line">  <span class="keyword">RMDir</span> /r <span class="string">&quot;<span class="variable constant_">$SMPROGRAMS</span>\<span class="variable">$&#123;PRODUCT_NAME&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">DeleteRegKey</span> <span class="variable">$&#123;PRODUCT_UNINST_ROOT_KEY&#125;</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_UNINST_KEY&#125;</span>&quot;</span></span><br><span class="line">  <span class="keyword">DeleteRegKey</span> <span class="params">HKLM</span> <span class="string">&quot;<span class="variable">$&#123;PRODUCT_DIR_REGKEY&#125;</span>&quot;</span></span><br><span class="line">  <span class="keyword">SetAutoClose</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">SectionEnd</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#-- 根据 NSIS 脚本编辑规则，所有 Function 区段必须放置在 Section 区段之后编写，以避免安装程序出现未可预知的问题。--#</span></span><br><span class="line"><span class="keyword">Function</span> <span class="title function_">.onInstSuccess</span></span><br><span class="line">  <span class="keyword">ExecShell</span> <span class="string">&quot;&quot;</span> <span class="string">&quot;<span class="variable constant_">$INSTDIR</span>\readme.txt&quot;</span></span><br><span class="line"><span class="keyword">FunctionEnd</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Function</span> <span class="title function_">un</span>.onInit</span><br><span class="line">  <span class="keyword">MessageBox</span> <span class="params">MB_ICONQUESTION</span>|<span class="params">MB_YESNO</span>|<span class="params">MB_DEFBUTTON2</span> <span class="string">&quot;您确实要完全移除 <span class="variable">$(^Name)</span> ，及其所有的组件？&quot;</span> <span class="params">IDYES</span> +<span class="number">2</span></span><br><span class="line">  <span class="keyword">Abort</span></span><br><span class="line"><span class="keyword">FunctionEnd</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Function</span> <span class="title function_">un</span>.onUninstSuccess</span><br><span class="line">  <span class="keyword">HideWindow</span></span><br><span class="line">  <span class="keyword">MessageBox</span> <span class="params">MB_ICONINFORMATION</span>|<span class="params">MB_OK</span> <span class="string">&quot;<span class="variable">$(^Name)</span> 已成功地从您的计算机移除。&quot;</span></span><br><span class="line"><span class="keyword">FunctionEnd</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/nsis/">#nsis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/04/27/gcode/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">3D打印-常用gcode指令</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/04/27/hello-world/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Hexo入门</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">RaoYuLin</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%8F%98%E9%87%8F"><span class="nav-text">常用变量</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type = "text/javascript" src="/js/click.js"></script>
+</body>
+</html>
