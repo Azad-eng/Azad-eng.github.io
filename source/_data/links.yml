@@ -1,0 +1,32 @@
+# ---------------------------------------------------------------------------------------
+# Friends link config
+# ---------------------------------------------------------------------------------------
+- name: XPoet
+  link: https://xpoet.cn/
+  description: 所有命运的馈赠，早已在暗中标好价格。
+  avatar: https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg
+
+- name: KAI'S NOTE
+  link: https://kainote.top/
+  description: 三天打鱼(⊙ˍ⊙)两天晒网
+  avatar: https://cdn.jsdelivr.net/gh/kaix2301/pictures/img202201072101018.jpg
+
+- name: _跑调大叔_
+  link: https://zuobiao-x.github.io/
+  description: 天下事有难易乎  为之，则难者亦易  不为，则易者亦难
+  avatar: https://zuobiao-x.github.io/assets/img/touxiang.jpg
+
+- name: hexo-theme-keep
+  link: https://keep-docs.xpoet.cn/
+  description: 一款简约且优雅的 Hexo 主题
+  avatar: https://keep-docs.xpoet.cn/assets/images/keep-logo.svg
+
+- name: 锦瑟年华，逐梦之人
+  link: https://cqh-i.github.io/
+  description: 爱技术，爱生活  努力打造属于自己的天地，送给未来的她
+  avatar: https://cqh-i.github.io/assets/blogImg/Mort1.png
+
+- name: 慕雪的寒舍
+  link: https://ewait.gitee.io/
+  description: 吾心如一，慕雪纷纷
+  avatar: https://ewait.gitee.io/images/myPNG.jpg
