@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>maven - 标签 -  ~-~-~-&gt;_&lt;) </title>
+        <link>/tags/maven/</link>
+        <description>maven - 标签 -  ~-~-~-&gt;_&lt;) </description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1574726350@qq.com (Azad-eng)</managingEditor>
+            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Jun 2022 03:34:35 &#43;0800</lastBuildDate><atom:link href="/tags/maven/" rel="self" type="application/rss+xml" /><item>
+    <title>Maven-Pom</title>
+    <link>/maven-pom/</link>
+    <pubDate>Wed, 01 Jun 2022 03:34:35 &#43;0800</pubDate>
+    <author>Azad-eng</author>
+    <guid>/maven-pom/</guid>
+    <description><![CDATA[通过配置maven的pom文件来自定义打包jar]]></description>
+</item>
+</channel>
+</rss>

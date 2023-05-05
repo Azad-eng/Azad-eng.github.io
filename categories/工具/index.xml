@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>工具 - 分类 -  ~-~-~-&gt;_&lt;) </title>
+        <link>/categories/%E5%B7%A5%E5%85%B7/</link>
+        <description>工具 - 分类 -  ~-~-~-&gt;_&lt;) </description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1574726350@qq.com (Azad-eng)</managingEditor>
+            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 26 Feb 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="/categories/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+    <title>正则表达式初识</title>
+    <link>/regex/</link>
+    <pubDate>Sun, 26 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>/regex/</guid>
+    <description><![CDATA[Regex正则表达式 组成 （1）字符类 1.字符集：[ABC] 匹配集合中的任]]></description>
+</item>
+</channel>
+</rss>

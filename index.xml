@@ -1,0 +1,90 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title> ~-~-~-&gt;_&lt;) </title>
+        <link>/</link>
+        <description>Hugo theme - LoveIt</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1574726350@qq.com (Azad-eng)</managingEditor>
+            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 27 Feb 2023 00:00:00 &#43;0000</lastBuildDate>
+            <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title></title>
+    <link>/Christophe/</link>
+    <pubDate>Mon, 27 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>/Christophe/</guid>
+    <description><![CDATA[书签 📝 ？ 。]]></description>
+</item>
+<item>
+    <title></title>
+    <link>/ZenMotor/</link>
+    <pubDate>Sun, 26 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>/ZenMotor/</guid>
+    <description><![CDATA[书签 📝 哪一个才是真正的科学实验？ 一个人操作着价值五万美金的福兰克斯坦仪器]]></description>
+</item>
+<item>
+    <title>正则表达式初识</title>
+    <link>/regex/</link>
+    <pubDate>Sun, 26 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>/regex/</guid>
+    <description><![CDATA[Regex正则表达式 组成 （1）字符类 1.字符集：[ABC] 匹配集合中的任]]></description>
+</item>
+<item>
+    <title>2023</title>
+    <link>/memo/2023/</link>
+    <pubDate>Tue, 07 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>/memo/2023/</guid>
+    <description><![CDATA[通用命令摘要 1. 文件夹操作 lists 当前目录下的所有文件 1 $ ls change directory 进入指定目录 1 2]]></description>
+</item>
+<item>
+    <title>JavaFx自定义控件（五）- 使用Region类来自定义全新的组件</title>
+    <link>/customcontrols05/</link>
+    <pubDate>Sun, 05 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>/customcontrols05/</guid>
+    <description><![CDATA[导航 创建自定义控件的不同方法 使用CSS重新设置现有控件的样式 组合现有控件]]></description>
+</item>
+<item>
+    <title>2024</title>
+    <link>/memo/2024/</link>
+    <pubDate>Thu, 02 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>/memo/2024/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件</title>
+    <link>/customcontrols04/</link>
+    <pubDate>Wed, 08 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>/customcontrols04/</guid>
+    <description><![CDATA[导航 创建自定义控件的不同方法 使用CSS重新设置现有控件的样式 组合现有控件]]></description>
+</item>
+<item>
+    <title>JavaFx自定义控件（三）- 扩展现有控件来创建自定义控件</title>
+    <link>/customcontrols03/</link>
+    <pubDate>Mon, 06 Jun 2022 11:15:38 &#43;0800</pubDate>
+    <author>Azad-eng</author>
+    <guid>/customcontrols03/</guid>
+    <description><![CDATA[导航 创建自定义控件的不同方法 使用CSS重新设置现有控件的样式 组合现有控件]]></description>
+</item>
+<item>
+    <title>JavaFx自定义控件（二）- 组合现有控件来创建自定义控件</title>
+    <link>/customcontrols02/</link>
+    <pubDate>Mon, 06 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>/customcontrols02/</guid>
+    <description><![CDATA[导航 创建自定义控件的不同方法 使用CSS重新设置现有控件的样式 组合现有控件]]></description>
+</item>
+<item>
+    <title>JavaFx自定义控件（一）- 使用CSS重新设置现有控件的样式</title>
+    <link>/customcontrols01/</link>
+    <pubDate>Mon, 06 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>/customcontrols01/</guid>
+    <description><![CDATA[前言 为什么需要自定义控件？ JavaFx中很多内置控件的代码都是私有的或最]]></description>
+</item>
+</channel>
+</rss>

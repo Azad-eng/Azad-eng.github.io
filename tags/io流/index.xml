@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>IO流 - 标签 -  ~-~-~-&gt;_&lt;) </title>
+        <link>/tags/io%E6%B5%81/</link>
+        <description>IO流 - 标签 -  ~-~-~-&gt;_&lt;) </description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1574726350@qq.com (Azad-eng)</managingEditor>
+            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Jun 2022 15:16:47 &#43;0800</lastBuildDate><atom:link href="/tags/io%E6%B5%81/" rel="self" type="application/rss+xml" /><item>
+    <title>IoModel</title>
+    <link>/iomodel/</link>
+    <pubDate>Wed, 01 Jun 2022 15:16:47 &#43;0800</pubDate>
+    <author>Azad-eng</author>
+    <guid>/iomodel/</guid>
+    <description><![CDATA[BIO和NIO的不同 BIO以流的方式处理数据，而NIO以块的方式处理数据]]></description>
+</item>
+</channel>
+</rss>

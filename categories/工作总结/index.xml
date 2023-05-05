@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>工作总结 - 分类 -  ~-~-~-&gt;_&lt;) </title>
+        <link>/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/</link>
+        <description>工作总结 - 分类 -  ~-~-~-&gt;_&lt;) </description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1574726350@qq.com (Azad-eng)</managingEditor>
+            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Jun 2022 15:03:45 &#43;0800</lastBuildDate><atom:link href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" rel="self" type="application/rss+xml" /><item>
+    <title>如何使用 SSH 控制连接 Windows 服务器？</title>
+    <link>/ssh2/</link>
+    <pubDate>Wed, 01 Jun 2022 15:03:45 &#43;0800</pubDate>
+    <author>Azad-eng</author>
+    <guid>/ssh2/</guid>
+    <description><![CDATA[在windows上安装SSH服务器 [windows自带SSH服务器：应用]]></description>
+</item>
+<item>
+    <title>NSIS安装脚本</title>
+    <link>/nsis/</link>
+    <pubDate>Wed, 01 Jun 2022 03:40:46 &#43;0800</pubDate>
+    <author>Azad-eng</author>
+    <guid>/nsis/</guid>
+    <description><![CDATA[使用nsis制作Java程序安装包的记录，nsis还可以直接把jar包生成exe可执行文件，目前使用launch4j来制作exe]]></description>
+</item>
+<item>
+    <title>Maven-Pom</title>
+    <link>/maven-pom/</link>
+    <pubDate>Wed, 01 Jun 2022 03:34:35 &#43;0800</pubDate>
+    <author>Azad-eng</author>
+    <guid>/maven-pom/</guid>
+    <description><![CDATA[通过配置maven的pom文件来自定义打包jar]]></description>
+</item>
+</channel>
+</rss>

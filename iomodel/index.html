@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>IoModel -  ~-~-~-&gt;_&lt;) </title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="IoModel" />
+<meta property="og:description" content="BIO和NIO的不同 BIO以流的方式处理数据，而NIO以块的方式处理数据" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/iomodel/" /><meta property="og:image" content="/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-01T15:16:47+08:00" />
+<meta property="article:modified_time" content="2022-06-01T15:16:47+08:00" /><meta property="og:site_name" content="LoveIt" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="IoModel"/>
+<meta name="twitter:description" content="BIO和NIO的不同 BIO以流的方式处理数据，而NIO以块的方式处理数据"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/iomodel/" /><link rel="prev" href="/ssh2/" /><link rel="next" href="/methodvisualize/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "IoModel",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/iomodel\/"
+        },"image": ["\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "IO流, 客户端与服务端","wordcount":  2887 ,
+        "url": "\/iomodel\/","datePublished": "2022-06-01T15:16:47+08:00","dateModified": "2022-06-01T15:16:47+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "azad","logo": "\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Azad-eng"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title=" ~-~-~-&gt;_&lt;) "><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Azad&#39;s Space</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner">
+                        <div class="dropdown">
+                            <a href="/memo/2023/" class="menu-item menu-more dropbtn" title="" ><i class='fa-solid fa-sd-card'></i> 备忘录 
+                            </a>
+                            <div class="menu-more-content dropdown-content"><a href="/memo/2023/" title="" ><i class='fa-solid fa-file-pen'></i> 2023 </a><a href="/memo/2024/" title="" ><i class='fa-solid fa-file'></i> 2024 </a></div>
+                        </div>
+                    <a class="menu-item" href="/friends/"><i class='fas fa-fw fa-fan fa-spin'></i> Azadの友人帐 
+                        </a><a class="menu-item" href="/treasure/"><i class='fas fa-fw fa-toolbox'></i> 百宝箱 
+                        </a><a class="menu-item" href="/reading/"><i class='fas fa-fw fa-toolbox'></i> 阅读记录 
+                        </a><a class="menu-item" href="/about/" title="自我介绍~"><i class='fa-solid fa-skull'></i> 关于 
+                        </a>
+                        <div class="dropdown">
+                            <a href="/posts/" class="menu-item menu-more dropbtn" title="点击查看所有的文章" ><i class='fa-solid fa-folder-tree'></i> 归档 
+                            </a>
+                            <div class="menu-more-content dropdown-content"><a href="/tags/" title="" ><i class='fa-solid fa-tag'></i> 标签 </a><a href="/categories/" title="" ><i class='fa-solid fa-filter'></i> 分类 </a></div>
+                        </div>
+                    <a class="menu-item" href="/memos/"><i class='fab fa-twitter'></i> 废话胶囊 
+                        </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title=" ~-~-~-&gt;_&lt;) "><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Azad&#39;s Space</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/memo/2023/" title=""><i class='fa-solid fa-sd-card'></i>备忘录</a><a class="menu-item" href="/friends/" title=""><i class='fas fa-fw fa-fan fa-spin'></i>Azadの友人帐</a><a class="menu-item" href="/treasure/" title=""><i class='fas fa-fw fa-toolbox'></i>百宝箱</a><a class="menu-item" href="/reading/" title=""><i class='fas fa-fw fa-toolbox'></i>阅读记录</a><a class="menu-item" href="/about/" title="自我介绍~"><i class='fa-solid fa-skull'></i>关于</a><a class="menu-item" href="/posts/" title="点击查看所有的文章"><i class='fa-solid fa-folder-tree'></i>归档</a><a class="menu-item" href="/memos/" title=""><i class='fab fa-twitter'></i>废话胶囊</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">IoModel</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Azad-eng" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Azad-eng</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/java%E5%9F%BA%E7%A1%80/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Java基础</a>&nbsp;<a href="/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>网络通讯</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-01">2022-06-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2887 字
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/iomodel/" class="leancloud_visitors" data-flag-title="IoModel">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;
+                <a href="#comments" id="post-meta-vcount" title="查看评论">
+                    <i class="fas fa-comment fa-fw"></i>&nbsp;<span id="/iomodel/" class="waline-comment-count"></span>&nbsp;条评论
+                </a></div>
+
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#演示bio服务端线程池机制">演示BIO服务端线程池机制</a></li>
+    <li><a href="#演示nio核心组件之一buffer的使用">演示NIO核心组件之一Buffer的使用</a></li>
+    <li><a href="#演示nio用filechannel对本地文件进行io操作-1">演示NIO用FileChannel对本地文件进行IO操作-1</a></li>
+    <li><a href="#演示nio用filechannel对本地文件进行io操作-2">演示NIO用FileChannel对本地文件进行IO操作-2</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition abstract open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ul fa-fw" aria-hidden="true"></i> BIO和NIO的不同<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>BIO以流的方式处理数据，而NIO以块的方式处理数据，后者效率高很多</li>
+<li>BIO是阻塞的，而NIO是非阻塞的</li>
+<li>BIO是基于字节流和字符流进行数据操作，且只能单向操作，即要么读取inputStream要么写出outputStream，而NIO基于Channel(通道)和Buffer(缓冲区)进行数据操作的，Buffer既可以读取get()也可以写入数据put()，只需通过flip进行读写切换即可,Channel也是双向的，可以返回底层OS的情况</li>
+<li>BIO一个线程只能监听一个客户端，而BIO的Selector(选择器)可以用于监听多个通道的事件(比如：连接请求),因此使用单个线程就可以监听多个客户端通道</li>
+</ul>
+</div>
+        </div>
+    </div>
+<figure><a class="lightgallery" href="/images/java/2022/io%e6%a8%a1%e5%9e%8b.png" title="/images/java/2022/io模型.png" data-thumbnail="/images/java/2022/io模型.png" data-sub-html="<h2>IoModel (nio&amp;bio)</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/java/2022/io%e6%a8%a1%e5%9e%8b.png"
+            data-srcset="/images/java/2022/io%e6%a8%a1%e5%9e%8b.png, /images/java/2022/io%e6%a8%a1%e5%9e%8b.png 1.5x, /images/java/2022/io%e6%a8%a1%e5%9e%8b.png 2x"
+            data-sizes="auto"
+            alt="/images/java/2022/io模型.png" />
+    </a><figcaption class="image-caption">IoModel (<code>nio&amp;bio</code>)</figcaption>
+    </figure>
+<h3 id="演示bio服务端线程池机制">演示BIO服务端线程池机制</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.efl.bio</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.net.ServerSocket</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.net.Socket</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutorService</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Author: Azad-eng
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Date: 2022/2/26
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Description: 演示线程池机制
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BioServer</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 思路分析：
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 1.创建一个线程池
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 2.如果有客户端连接，就创建一个线程与之通信(单独写一个方法)
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ExecutorService</span> <span class="n">threadPool</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newCachedThreadPool</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ServerSocket</span> <span class="n">serverSocket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerSocket</span><span class="o">(</span><span class="n">6666</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//监听，等待客户端连接,得到一个不可更改的Socket
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">//如果没有连接会堵塞在这里
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;server has started, accepting...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Socket</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">serverSocket</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;连接到一个client了！&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//执行线程池里new出来的线程，重写里面的run方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">threadPool</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">//这里就可以和客户端通信了，单独写一个通信的方法，把客户端连接上的socket传进去(没有这个socket无法进行通信)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="c1">//调用该方法handler(socket)进行通信
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="c1">//测试线程信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="s">&#34;启动了线程:id=&#34;</span> <span class="o">+</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; name=&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;\n可以进行通信了！&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">handler</span><span class="o">(</span><span class="n">socket</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">});</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">handler</span><span class="o">(</span><span class="n">Socket</span> <span class="n">socket</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//建立一个容量为1024的字节数组来接收数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">1024</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//持续读取client发送的数据(该数据被装在了bytes字节数组中)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//read()方法返回的是接收的data的下一个byte(类型为int),如果返回-1代表inputStream到底了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">//与NIO不同的是：如果服务端没有接收到客户端发出的数据线程会堵塞在这里
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;reading...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">read</span> <span class="o">=</span> <span class="n">inputStream</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">bytes</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">read</span> <span class="o">!=</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">//把读取到的数据(字节数组——&gt;字符串)print出来
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">bytes</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">read</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">//程序执行到这里代表数据读取到底了，那么就退出while循环，接着关闭流，退出通信
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;线程:id=&#34;</span> <span class="o">+</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; name=&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span><span class="s">&#34;关闭了和server的连接&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">socket</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="演示nio核心组件之一buffer的使用">演示NIO核心组件之一Buffer的使用</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.efl.nio</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.nio.IntBuffer</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Author: Azad-eng
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Date: 2022/2/26
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Description:演示NIO核心组件之一Buffer的使用
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BasicBuffer</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 思路分析：
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 1.创建一个IntBuffer,容量为5个int
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 2.向里面存放数据10,11,12,13,14
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 3.从里面读取数据
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">IntBuffer</span> <span class="n">intBuffer</span> <span class="o">=</span> <span class="n">IntBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="n">5</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//存放数据,执行该方法一次，position在底层会自动+1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">intBuffer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//循环存放数据(不能超过intBuffer的容量限制),前面已经存放了2个int了，所以后面intBuffer.capacity()-2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">intBuffer</span><span class="o">.</span><span class="na">capacity</span><span class="o">()</span> <span class="o">-</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">intBuffer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">12</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//如何从intBuffer中读取数据？
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//读写切换(这里需要：写——&gt;读)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">intBuffer</span><span class="o">.</span><span class="na">flip</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 常用方法如下：
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//将index的位置position设置为数组的第2位，即从第2位开始读，结果输出为11,12,13,14
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">intBuffer</span><span class="o">.</span><span class="na">position</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//设置能读取到的数组数据的最大限制(不能&gt;=3个数据,即只能输出2个)，结果输出为11,12
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">intBuffer</span><span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//循环读取数据:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">intBuffer</span><span class="o">.</span><span class="na">hasRemaining</span><span class="o">()){</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//get()里面维护的是一个index，每get一次,索引就往右移动一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">//一个int=2bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// 10  11  12  13  14
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// ^   ^   ^   ^   ^
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// ————————————————————
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">//| 0 | 2 | 4 | 6 | 8 |
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// ————————————————————
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">//      ^
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">//      |
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intBuffer</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//get(int index) 可以读取指定索引位置处的数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intBuffer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">2</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="演示nio用filechannel对本地文件进行io操作-1">演示NIO用FileChannel对本地文件进行IO操作-1</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.efl.nio</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.nio.ByteBuffer</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.nio.channels.FileChannel</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Author: Azad-eng
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Date: 2022/2/26
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Description:
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 演示用FileChannel对本地文件进行IO操作案例1
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 1.输出.txt到本地文件目录
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 2.读取.txt文件并打印到控制台屏幕
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileChannel01</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//        new FileChannel01().writeToOut();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">new</span> <span class="n">FileChannel01</span><span class="o">().</span><span class="na">readFromIn</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">writeToOut</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 思路分析：
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 1.创建.txt文件的内容和在本地文件目录中的文件路径
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 2.创建一个文件输出流FileOutputStream
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 3.通过FileOutputStream得到FileChannel
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 4.创建缓冲区Buffer并分配容量空间
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 5.将文件写入put到缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 6.再将缓冲区数据写入write到fileChannel中
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 7.关闭输出流
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">srcTxt</span> <span class="o">=</span> <span class="s">&#34;hello world~&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">dstPath</span> <span class="o">=</span> <span class="s">&#34;F:\\linder\\IoTest\\hello01.txt&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">FileOutputStream</span> <span class="n">fileOutputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">dstPath</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">FileChannel</span> <span class="n">channel</span> <span class="o">=</span> <span class="n">fileOutputStream</span><span class="o">.</span><span class="na">getChannel</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ByteBuffer</span> <span class="n">byteBuffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="n">1024</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">byteBuffer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">srcTxt</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">byteBuffer</span><span class="o">.</span><span class="na">flip</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//将缓冲区的数据写入到file通道中(byteBuffer write to fileChannel)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">channel</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">byteBuffer</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fileOutputStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">readFromIn</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 思路分析
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 1.根据目标文件地址生成文件
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 2.创建一个文件输入流,将文件数据放进去
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 3.通过FileInputStream得到FileChannel
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 4.创建缓冲区Buffer并指定容量空间大小为文件的大小
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 5.再将缓冲区数据读取read到fileChannel中
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 6.打印
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 7.关闭输入流
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">dstPath</span> <span class="o">=</span> <span class="s">&#34;F:\\linder\\IoTest\\hello01.txt&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">dstPath</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">FileInputStream</span> <span class="n">fileInputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">FileChannel</span> <span class="n">channel</span> <span class="o">=</span> <span class="n">fileInputStream</span><span class="o">.</span><span class="na">getChannel</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ByteBuffer</span> <span class="n">byteBuffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span> <span class="n">file</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">channel</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">byteBuffer</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">byte</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="n">byteBuffer</span><span class="o">.</span><span class="na">array</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">array</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fileInputStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="演示nio用filechannel对本地文件进行io操作-2">演示NIO用FileChannel对本地文件进行IO操作-2</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.efl.nio</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.nio.ByteBuffer</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.nio.channels.FileChannel</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Author: Azad-eng
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Date: 2022/2/26
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Description:通过一个Buffer进行读写操作来完成对指定文件的拷贝
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileChannel02</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 思路分析
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 1.得到copyFrom文件的文件输入流
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 2.通过文件输入流得到FileChannel
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 3.创建缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 4.循环的一边读取copyFrom的channel中的数据一边将数据写入到copyTo的channel中
+</span></span></span><span class="line"><span class="cl"><span class="cm">         * 5.关闭文件输入输出流
+</span></span></span><span class="line"><span class="cl"><span class="cm">         */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;F:\\linder\\IoTest\\hello01.txt&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">FileInputStream</span> <span class="n">fileInputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="s">&#34;F:\\linder\\IoTest\\hello01.txt&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">FileChannel</span> <span class="n">channelIn</span> <span class="o">=</span> <span class="n">fileInputStream</span><span class="o">.</span><span class="na">getChannel</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">FileOutputStream</span> <span class="n">fileOutputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">&#34;F:\\linder\\IoTest\\hello02.txt&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">FileChannel</span> <span class="n">channelOut</span> <span class="o">=</span> <span class="n">fileOutputStream</span><span class="o">.</span><span class="na">getChannel</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ByteBuffer</span> <span class="n">byteBuffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">file</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">             * 注意!!!
+</span></span></span><span class="line"><span class="cl"><span class="cm">             * 这里要将缓冲区重置一下，否则当文件读取到最后时，position=limit=0，然后一直都是read=0，一直循环读取，始终无法读取完数据
+</span></span></span><span class="line"><span class="cl"><span class="cm">             * positon = 0;
+</span></span></span><span class="line"><span class="cl"><span class="cm">             * limit = capacity;
+</span></span></span><span class="line"><span class="cl"><span class="cm">             * mark = 1;
+</span></span></span><span class="line"><span class="cl"><span class="cm">             */</span>
+</span></span><span class="line"><span class="cl">            <span class="n">byteBuffer</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">read</span> <span class="o">=</span> <span class="n">channelIn</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">byteBuffer</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">read</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//当read = -1 表示channelIn中的数据已经被读完了，所以要退出读写循环中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">read</span><span class="o">==-</span><span class="n">1</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//翻转byteBuffer的功能，开始将byteBuffer的数据写入到channelOut中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">byteBuffer</span><span class="o">.</span><span class="na">flip</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">channelOut</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">byteBuffer</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fileInputStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fileOutputStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-06-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/iomodel/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="/iomodel/" data-title="IoModel" data-hashtags="IO流,客户端与服务端"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="/iomodel/" data-hashtag="IO流"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="/iomodel/" data-title="IoModel"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="/iomodel/" data-title="IoModel"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="/iomodel/" data-title="IoModel"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/io%E6%B5%81/">IO流</a>,&nbsp;<a href="/tags/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF/">客户端与服务端</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/ssh2/" class="prev" rel="prev" title="如何使用 SSH 控制连接 Windows 服务器？"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>如何使用 SSH 控制连接 Windows 服务器？</a>
+            <a href="/methodvisualize/" class="next" rel="next" title="MethodVisualize">MethodVisualize<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="waline"></div>
+        <script src='https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+        <script>
+		    	new Waline({
+		    	  el: '#waline',
+				  meta: ["nick","mail","link"],
+		    	  requiredMeta: ["nick","mail"],
+		    	  login: "",
+				  placeholder: "评论前需注册并登录，望见谅~",
+		    	  serverURL: "https://waline-test-2639v4859-azad-eng.vercel.app/",
+		    	  avatarCDN: "https://sdn.geekzu.org/avatar/",
+		    	  pageSize:  20 ,
+		    	  avatar: "retro",
+		    	  lang: "zh-CN",
+				  visitor:  true ,
+				  highlight:  true ,
+				  uploadImage:  false 
+		    	});
+		    </script></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container">
+            <div class="footer-line">
+                <span id="run-time"></span>
+            </div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/Azad-eng" target="_blank">Azad-eng</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div class="sidebar_wo">
+          <div class="sidebar_wo" id="lamu">
+            <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png" alt="拉姆" 
+            onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuB.png'" 
+            onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png'" title="回到顶部">
+          </div>
+          <div id="leimu">
+            <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png" alt="雷姆" 
+            onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuB.png'" 
+            onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png'" title="回到底部">
+          </div>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script><script type="text/javascript" src="/js/custom.js"></script></body>
+</html>

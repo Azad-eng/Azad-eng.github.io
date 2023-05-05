@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>正则表达式初识 -  ~-~-~-&gt;_&lt;) </title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="正则表达式初识" />
+<meta property="og:description" content="Regex正则表达式 组成 （1）字符类 1.字符集：[ABC] 匹配集合中的任" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/regex/" /><meta property="og:image" content="/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-26T00:00:00+00:00" /><meta property="og:site_name" content="LoveIt" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="正则表达式初识"/>
+<meta name="twitter:description" content="Regex正则表达式 组成 （1）字符类 1.字符集：[ABC] 匹配集合中的任"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/regex/" /><link rel="prev" href="/memo/2023/" /><link rel="next" href="/ZenMotor/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "正则表达式初识",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/regex\/"
+        },"image": ["\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Regex","wordcount":  1254 ,
+        "url": "\/regex\/","datePublished": "2023-02-26T00:00:00+00:00","dateModified": "2023-02-26T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "azad","logo": "\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Azad-eng"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title=" ~-~-~-&gt;_&lt;) "><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Azad&#39;s Space</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner">
+                        <div class="dropdown">
+                            <a href="/memo/2023/" class="menu-item menu-more dropbtn" title="" ><i class='fa-solid fa-sd-card'></i> 备忘录 
+                            </a>
+                            <div class="menu-more-content dropdown-content"><a href="/memo/2023/" title="" ><i class='fa-solid fa-file-pen'></i> 2023 </a><a href="/memo/2024/" title="" ><i class='fa-solid fa-file'></i> 2024 </a></div>
+                        </div>
+                    <a class="menu-item" href="/friends/"><i class='fas fa-fw fa-fan fa-spin'></i> Azadの友人帐 
+                        </a><a class="menu-item" href="/treasure/"><i class='fas fa-fw fa-toolbox'></i> 百宝箱 
+                        </a><a class="menu-item" href="/reading/"><i class='fas fa-fw fa-toolbox'></i> 阅读记录 
+                        </a><a class="menu-item" href="/about/" title="自我介绍~"><i class='fa-solid fa-skull'></i> 关于 
+                        </a>
+                        <div class="dropdown">
+                            <a href="/posts/" class="menu-item menu-more dropbtn" title="点击查看所有的文章" ><i class='fa-solid fa-folder-tree'></i> 归档 
+                            </a>
+                            <div class="menu-more-content dropdown-content"><a href="/tags/" title="" ><i class='fa-solid fa-tag'></i> 标签 </a><a href="/categories/" title="" ><i class='fa-solid fa-filter'></i> 分类 </a></div>
+                        </div>
+                    <a class="menu-item" href="/memos/"><i class='fab fa-twitter'></i> 废话胶囊 
+                        </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title=" ~-~-~-&gt;_&lt;) "><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Azad&#39;s Space</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/memo/2023/" title=""><i class='fa-solid fa-sd-card'></i>备忘录</a><a class="menu-item" href="/friends/" title=""><i class='fas fa-fw fa-fan fa-spin'></i>Azadの友人帐</a><a class="menu-item" href="/treasure/" title=""><i class='fas fa-fw fa-toolbox'></i>百宝箱</a><a class="menu-item" href="/reading/" title=""><i class='fas fa-fw fa-toolbox'></i>阅读记录</a><a class="menu-item" href="/about/" title="自我介绍~"><i class='fa-solid fa-skull'></i>关于</a><a class="menu-item" href="/posts/" title="点击查看所有的文章"><i class='fa-solid fa-folder-tree'></i>归档</a><a class="menu-item" href="/memos/" title=""><i class='fab fa-twitter'></i>废话胶囊</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">正则表达式初识</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Azad-eng" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Azad-eng</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%B7%A5%E5%85%B7/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>工具</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-02-26">2023-02-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1254 字
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/regex/" class="leancloud_visitors" data-flag-title="正则表达式初识">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;
+                <a href="#comments" id="post-meta-vcount" title="查看评论">
+                    <i class="fas fa-comment fa-fw"></i>&nbsp;<span id="/regex/" class="waline-comment-count"></span>&nbsp;条评论
+                </a></div>
+
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#regex正则表达式">Regex正则表达式</a>
+      <ul>
+        <li><a href="#组成">组成</a>
+          <ul>
+            <li><a href="#1字符类">（1）字符类</a></li>
+            <li><a href="#2量词和交替">（2）量词和交替</a></li>
+            <li><a href="#3锚点">（3）锚点</a></li>
+          </ul>
+        </li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="regex正则表达式">Regex正则表达式</h3>
+<h4 id="组成">组成</h4>
+<h5 id="1字符类">（1）字符类</h5>
+<p><strong>1.字符集：<code>[ABC]</code> 匹配集合中的任何一个字符</strong></p>
+<p>例子：[<code>aeiou</code>] 匹配：gl<code>i</code>b j<code>o</code>cks v<code>e</code>x dw<code>a</code>rv<code>e</code>s!</p>
+<p><strong>2.否定集<code>[^ABC]</code> 匹配不在集合中的任何一个字符</strong></p>
+<p>例子：[<code>^aeiou</code>] 匹配：<code>gl</code>i<code>b j</code>o<code>cks v</code>e<code>x dw</code>a<code>rv</code>e<code>s!</code></p>
+<p><strong>3.范围<code>[A-Z]</code> 匹配（含）两个指定字符之间的任意字符</strong>
+例子：[<code>g-s</code>] 匹配：abcdef<code>ghijklmnopqrs</code>tuvwxyz</p>
+<p><strong>4.点<code>.</code> 匹配除换行符之外的任何一个字符</strong>
+相当于[^\n\r]</p>
+<p>例子：<code>.</code>匹配：<code>glib jocks vex dwarves!</code></p>
+<p><strong>5.匹配任何<code>[\s\S]</code> 一个字符集，可用于匹配任何一个字符，包括换行符</strong></p>
+<p>例子：[<code>\s\S</code>]匹配：<code>glib jocks vex dwarves!</code></p>
+<p><strong>6.单词<code>\w</code> 匹配任何一个单词字符（字母数字和下划线）</strong>
+仅匹配低位 ASCII 字符（无重音字符或非罗马字符），相当于[A-Za-z0-9_]</p>
+<p>例子：<code>\w</code>匹配：<code>bonjour</code>,<code>mon fr</code>è<code>re</code>
+<strong>7.非单词<code>\W</code> 匹配任何一个非单词字符（字母数字和下划线）</strong>
+相当于[^A-Za-z0-9_]</p>
+<p>例子：<code>\W</code>匹配：bonjour<code>,</code>mon<code>NULL</code>fr<code>è</code>re</p>
+<p><strong>8.数字<code>\d</code> 匹配任何一个数字字符 (0-9)</strong>
+相当于[0-9]</p>
+<p>例子：<code>\d</code>匹配：+<code>1</code>-(<code>444</code>)-<code>555</code>-<code>1234</code></p>
+<p><strong>9.非数字<code>\D</code> 匹配任何一个非数字字符 (0-9)</strong>
+相当于[^0-9]</p>
+<p>例子：<code>\D</code>匹配：<code>+</code>1<code>-(</code>444<code>)-</code>555<code>-</code>1234</p>
+<p><strong>10.空格<code>\s</code> 匹配任何一个空白字符（空格、制表符、换行符）</strong>
+相当于[^0-9]</p>
+<p>例子：<code>\s</code>匹配：glib<code>NULL</code>jocks<code>NULL</code>vex<code>NULL</code>dwarves!</p>
+<p><strong>11.非空格<code>\S</code> 匹配任何一个非空白字符（空格、制表符、换行符）</strong>
+相当于[^0-9]</p>
+<p>例子：<code>\S</code>匹配：<code>glib</code> <code>jocks</code> <code>vex</code> <code>dwarves!</code></p>
+<h5 id="2量词和交替">（2）量词和交替</h5>
+<p><strong>1.加号：<code>+</code>匹配 1 个或多个前面的标记</strong></p>
+<p>例子：<code>b\w+</code> 匹配：b <code>be</code> <code>bee</code> <code>beer</code> <code>beers</code></p>
+<p><strong>2.星号：<code>*</code>匹配 0 个或多个前面的标记</strong></p>
+<p>例子：<code>b\w*</code> 匹配：<code>b</code> <code>be</code> <code>bee</code> <code>beer</code> <code>beers</code></p>
+<p><strong>3.量词：<code>{1,3}</code>匹配指定数量的的标记</strong>  {1,3}将匹配 1 到 3，{3}将完全匹配 3，{3,}将匹配 3 个或更多</p>
+<p>例子：<code>b\w{2,3}*</code> 匹配：b be <code>bee</code> <code>beer</code> <code>beer</code>s</p>
+<p><strong>4.optional：<code>？</code>匹配前面标记的 0 或 1 个，有效地使其成为可选的</strong></p>
+<p>例子：<code>colou?r*</code> 匹配：<code>color</code> <code>colour</code></p>
+<p><strong>5.lazy：<code>？</code>使前面的量词惰性化，使其匹配尽可能少的字符</strong>  默认情况下，量词是贪婪的，会匹配尽可能多的字符</p>
+<p>例子：<code>b\w+?*</code> 匹配：b <code>be</code> <code>be</code>e <code>be</code>er <code>be</code>ers</p>
+<p><strong>6.交替：<code>|</code>类似于布尔 OR。匹配之前或之后的表达式</strong>  它可以在一个组内运行，也可以在整个表达式上运行</p>
+<p>例子：<code>b(a|e|i)d</code> 匹配：<code>bad</code> bud bod <code>bed</code> <code>bid</code></p>
+<h5 id="3锚点">（3）锚点</h5>
+<p><strong>1.开始：<code>^</code>匹配字符串的开头</strong>  如果m启用了多行标志 ( )，则匹配一行的开头。这匹配一个位置，而不是一个字符</p>
+<p>例子：<code>^\w+</code> 匹配：<code>she</code> sells seashells</p>
+<p><strong>2.结尾：<code>$</code>匹配字符串的结尾</strong>  如果m启用了多行标志 ( )，则匹配一行的结尾。这匹配一个位置，而不是一个字符</p>
+<p>例子：<code>\w+$</code> 匹配：she sells <code>seashells</code></p>
+<p><strong>3.单词边界：<code>\b</code>匹配单词字符和非单词字符或位置（字符串的开始/结束）之间的单词边界位置</strong>
+例子：<code>s\b</code> 匹配：she sell<code>s</code> seashell<code>s</code></p>
+<p><strong>4.非单词边界：<code>\B</code>匹配任何不是单词边界的位置</strong> 这匹配一个位置，而不是一个字符。</p>
+<p>例子：<code>s\B</code> 匹配：<code>s</code>he <code>s</code>ells <code>s</code>ea<code>s</code>hells</p>
+<h4 id="参考">参考</h4>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-02-26</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/regex/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="/regex/" data-title="正则表达式初识" data-hashtags="Regex"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="/regex/" data-hashtag="Regex"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="/regex/" data-title="正则表达式初识"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="/regex/" data-title="正则表达式初识"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="/regex/" data-title="正则表达式初识"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/regex/">Regex</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/memo/2023/" class="prev" rel="prev" title="2023"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>2023</a>
+            <a href="/ZenMotor/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="waline"></div>
+        <script src='https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+        <script>
+		    	new Waline({
+		    	  el: '#waline',
+				  meta: ["nick","mail","link"],
+		    	  requiredMeta: ["nick","mail"],
+		    	  login: "",
+				  placeholder: "评论前需注册并登录，望见谅~",
+		    	  serverURL: "https://waline-test-2639v4859-azad-eng.vercel.app/",
+		    	  avatarCDN: "https://sdn.geekzu.org/avatar/",
+		    	  pageSize:  20 ,
+		    	  avatar: "retro",
+		    	  lang: "zh-CN",
+				  visitor:  true ,
+				  highlight:  true ,
+				  uploadImage:  false 
+		    	});
+		    </script></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container">
+            <div class="footer-line">
+                <span id="run-time"></span>
+            </div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/Azad-eng" target="_blank">Azad-eng</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div class="sidebar_wo">
+          <div class="sidebar_wo" id="lamu">
+            <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png" alt="拉姆" 
+            onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuB.png'" 
+            onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png'" title="回到顶部">
+          </div>
+          <div id="leimu">
+            <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png" alt="雷姆" 
+            onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuB.png'" 
+            onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png'" title="回到底部">
+          </div>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script><script type="text/javascript" src="/js/custom.js"></script></body>
+</html>

@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Java Visualizer - 标签 -  ~-~-~-&gt;_&lt;) </title>
+        <link>/tags/java-visualizer/</link>
+        <description>Java Visualizer - 标签 -  ~-~-~-&gt;_&lt;) </description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1574726350@qq.com (Azad-eng)</managingEditor>
+            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 02 Jun 2022 09:41:10 &#43;0800</lastBuildDate><atom:link href="/tags/java-visualizer/" rel="self" type="application/rss+xml" /><item>
+    <title>ClassVisulize</title>
+    <link>/classvisulize/</link>
+    <pubDate>Thu, 02 Jun 2022 09:41:10 &#43;0800</pubDate>
+    <author>Azad-eng</author>
+    <guid>/classvisulize/</guid>
+    <description><![CDATA[Java创建对象并通过对象访问属性的可视化流程及对象拷贝]]></description>
+</item>
+<item>
+    <title>MethodVisualize</title>
+    <link>/methodvisualize/</link>
+    <pubDate>Thu, 02 Jun 2022 09:41:10 &#43;0800</pubDate>
+    <author>Azad-eng</author>
+    <guid>/methodvisualize/</guid>
+    <description><![CDATA[Java创建对象并调用方法的可视化流程]]></description>
+</item>
+</channel>
+</rss>

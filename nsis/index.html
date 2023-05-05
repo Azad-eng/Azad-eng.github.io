@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>NSIS安装脚本 -  ~-~-~-&gt;_&lt;) </title><meta name="Description" content="使用nsis制作Java程序安装包的记录，nsis还可以直接把jar包生成exe可执行文件，目前使用launch4j来制作exe"><meta property="og:title" content="NSIS安装脚本" />
+<meta property="og:description" content="使用nsis制作Java程序安装包的记录，nsis还可以直接把jar包生成exe可执行文件，目前使用launch4j来制作exe" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/nsis/" /><meta property="og:image" content="/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-01T03:40:46+08:00" />
+<meta property="article:modified_time" content="2022-06-01T03:40:46+08:00" /><meta property="og:site_name" content="LoveIt" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="NSIS安装脚本"/>
+<meta name="twitter:description" content="使用nsis制作Java程序安装包的记录，nsis还可以直接把jar包生成exe可执行文件，目前使用launch4j来制作exe"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/nsis/" /><link rel="prev" href="/maven-pom/" /><link rel="next" href="/ssh2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "NSIS安装脚本",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/nsis\/"
+        },"image": ["\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "安装包脚本程序, 实用工具","wordcount":  1073 ,
+        "url": "\/nsis\/","datePublished": "2022-06-01T03:40:46+08:00","dateModified": "2022-06-01T03:40:46+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "azad","logo": "\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Azad-eng"
+            },"description": "使用nsis制作Java程序安装包的记录，nsis还可以直接把jar包生成exe可执行文件，目前使用launch4j来制作exe"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title=" ~-~-~-&gt;_&lt;) "><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Azad&#39;s Space</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner">
+                        <div class="dropdown">
+                            <a href="/memo/2023/" class="menu-item menu-more dropbtn" title="" ><i class='fa-solid fa-sd-card'></i> 备忘录 
+                            </a>
+                            <div class="menu-more-content dropdown-content"><a href="/memo/2023/" title="" ><i class='fa-solid fa-file-pen'></i> 2023 </a><a href="/memo/2024/" title="" ><i class='fa-solid fa-file'></i> 2024 </a></div>
+                        </div>
+                    <a class="menu-item" href="/friends/"><i class='fas fa-fw fa-fan fa-spin'></i> Azadの友人帐 
+                        </a><a class="menu-item" href="/treasure/"><i class='fas fa-fw fa-toolbox'></i> 百宝箱 
+                        </a><a class="menu-item" href="/reading/"><i class='fas fa-fw fa-toolbox'></i> 阅读记录 
+                        </a><a class="menu-item" href="/about/" title="自我介绍~"><i class='fa-solid fa-skull'></i> 关于 
+                        </a>
+                        <div class="dropdown">
+                            <a href="/posts/" class="menu-item menu-more dropbtn" title="点击查看所有的文章" ><i class='fa-solid fa-folder-tree'></i> 归档 
+                            </a>
+                            <div class="menu-more-content dropdown-content"><a href="/tags/" title="" ><i class='fa-solid fa-tag'></i> 标签 </a><a href="/categories/" title="" ><i class='fa-solid fa-filter'></i> 分类 </a></div>
+                        </div>
+                    <a class="menu-item" href="/memos/"><i class='fab fa-twitter'></i> 废话胶囊 
+                        </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title=" ~-~-~-&gt;_&lt;) "><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Azad&#39;s Space</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/memo/2023/" title=""><i class='fa-solid fa-sd-card'></i>备忘录</a><a class="menu-item" href="/friends/" title=""><i class='fas fa-fw fa-fan fa-spin'></i>Azadの友人帐</a><a class="menu-item" href="/treasure/" title=""><i class='fas fa-fw fa-toolbox'></i>百宝箱</a><a class="menu-item" href="/reading/" title=""><i class='fas fa-fw fa-toolbox'></i>阅读记录</a><a class="menu-item" href="/about/" title="自我介绍~"><i class='fa-solid fa-skull'></i>关于</a><a class="menu-item" href="/posts/" title="点击查看所有的文章"><i class='fa-solid fa-folder-tree'></i>归档</a><a class="menu-item" href="/memos/" title=""><i class='fab fa-twitter'></i>废话胶囊</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">NSIS安装脚本</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Azad-eng" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Azad-eng</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>工作总结</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-01">2022-06-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1073 字
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/nsis/" class="leancloud_visitors" data-flag-title="NSIS安装脚本">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;
+                <a href="#comments" id="post-meta-vcount" title="查看评论">
+                    <i class="fas fa-comment fa-fw"></i>&nbsp;<span id="/nsis/" class="waline-comment-count"></span>&nbsp;条评论
+                </a></div>
+
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#常用变量">常用变量</a></li>
+    <li><a href="#安装脚本">安装脚本</a></li>
+    <li><a href="#参考链接">参考链接：</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="常用变量">常用变量</h3>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i> 参数脚本<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>用户定义的解压路径：
+$INSTDIR</p>
+<p>程序文件目录：
+$PROGRAMFILES</p>
+<p>包含 NSIS 安装目录的一个标记。在编译时会检测到。常用于在你想调用一个在 NSIS 目录下的资源时，例如：图标、界面&hellip;：
+${NSISDIR}</p>
+<p>开始菜单目录：
+$STARTMENU</p>
+<p>开始菜单程序目录：
+$SMPROGRAMS</p>
+</div>
+        </div>
+    </div>
+<h3 id="安装脚本">安装脚本</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">; 该脚本使用 HM VNISEdit 脚本编辑器向导产生
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">; 安装程序初始定义常量
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">!define INSTDIR &#34;E:\nsis\nsis_test&#34;
+</span></span><span class="line"><span class="cl">!define PRODUCT_NAME &#34;EFL_PotatoOSp-8601Series&#34;
+</span></span><span class="line"><span class="cl">!define PRODUCT_VERSION &#34;1.2.7-alpha&#34;
+</span></span><span class="line"><span class="cl">!define PRODUCT_PUBLISHER &#34;Engineering For Life&#34;
+</span></span><span class="line"><span class="cl">!define PRODUCT_WEB_SITE &#34;http://www.efl-tech.com/&#34;
+</span></span><span class="line"><span class="cl">!define PRODUCT_DIR_REGKEY &#34;Software\Microsoft\Windows\CurrentVersion\App Paths\${PRODUCT_NAME}.exe&#34;
+</span></span><span class="line"><span class="cl">!define PRODUCT_UNINST_KEY &#34;Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}&#34;
+</span></span><span class="line"><span class="cl">!define PRODUCT_UNINST_ROOT_KEY &#34;HKLM&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SetCompressor lzma
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">; ------ MUI 现代界面定义 (1.67 版本以上兼容) ------
+</span></span><span class="line"><span class="cl">!include &#34;MUI.nsh&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">; MUI 预定义常量
+</span></span><span class="line"><span class="cl">!define MUI_ABORTWARNING
+</span></span><span class="line"><span class="cl">!define MUI_ICON &#34;E:\test\exe\icons\8601P.ico&#34;
+</span></span><span class="line"><span class="cl">!define MUI_UNICON &#34;${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">; 欢迎页面
+</span></span><span class="line"><span class="cl">!insertmacro MUI_PAGE_WELCOME
+</span></span><span class="line"><span class="cl">; 安装目录选择页面
+</span></span><span class="line"><span class="cl">!insertmacro MUI_PAGE_DIRECTORY
+</span></span><span class="line"><span class="cl">; 安装过程页面
+</span></span><span class="line"><span class="cl">!insertmacro MUI_PAGE_INSTFILES
+</span></span><span class="line"><span class="cl">; 安装完成页面
+</span></span><span class="line"><span class="cl">!define MUI_FINISHPAGE_RUN &#34;$INSTDIR\${PRODUCT_NAME}.exe&#34;
+</span></span><span class="line"><span class="cl">!insertmacro MUI_PAGE_FINISH
+</span></span><span class="line"><span class="cl">!define MUI_FINISHPAGE_RUN_PARAMETERS &#34;-Dprism.order=sw&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">; 安装卸载过程页面
+</span></span><span class="line"><span class="cl">!insertmacro MUI_UNPAGE_INSTFILES
+</span></span><span class="line"><span class="cl">; 安装界面包含的语言设置
+</span></span><span class="line"><span class="cl">!insertmacro MUI_LANGUAGE &#34;SimpChinese&#34;
+</span></span><span class="line"><span class="cl">; 安装预释放文件
+</span></span><span class="line"><span class="cl">!insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
+</span></span><span class="line"><span class="cl">; ------ MUI 现代界面定义结束 ------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">;引入nsh脚本-判断系统
+</span></span><span class="line"><span class="cl">!include &#34;x64.nsh&#34;
+</span></span><span class="line"><span class="cl">Name &#34;${PRODUCT_NAME} ${PRODUCT_VERSION}&#34;
+</span></span><span class="line"><span class="cl">OutFile &#34;${PRODUCT_NAME}_setup.exe&#34;
+</span></span><span class="line"><span class="cl">InstallDirRegKey HKLM &#34;${PRODUCT_UNINST_KEY}&#34; &#34;UninstallString&#34;
+</span></span><span class="line"><span class="cl">ShowInstDetails show
+</span></span><span class="line"><span class="cl">ShowUnInstDetails show
+</span></span><span class="line"><span class="cl">BrandingText &#34;EFL, Inc. &#34;
+</span></span><span class="line"><span class="cl">Section &#34;Test&#34; Test
+</span></span><span class="line"><span class="cl">      SetOutPath &#34;$INSTDIR&#34;
+</span></span><span class="line"><span class="cl">SectionEnd
+</span></span><span class="line"><span class="cl">Function .onInit
+</span></span><span class="line"><span class="cl">      #安装目录设置
+</span></span><span class="line"><span class="cl">      ${If} ${RunningX64}
+</span></span><span class="line"><span class="cl">      StrCpy $INSTDIR &#34;$PROGRAMFILES64\${PRODUCT_NAME}&#34;
+</span></span><span class="line"><span class="cl">      ${else}
+</span></span><span class="line"><span class="cl">      StrCpy $INSTDIR &#34;$PROGRAMFILES\${PRODUCT_NAME}&#34;
+</span></span><span class="line"><span class="cl">      ${EndIf}
+</span></span><span class="line"><span class="cl">FunctionEnd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Section &#34;MainSection&#34; SEC01
+</span></span><span class="line"><span class="cl">  SetOverwrite ifdiff
+</span></span><span class="line"><span class="cl">  RMDir /r &#34;$INSTDIR\预置模型&#34;
+</span></span><span class="line"><span class="cl">  RMDir /r &#34;$INSTDIR\update&#34;
+</span></span><span class="line"><span class="cl">  RMDir /r &#34;$INSTDIR\bin\Slic3r&#34;
+</span></span><span class="line"><span class="cl">  RMDIR /r &#34;$SMPROGRAMS\${PRODUCT_NAME}&#34;
+</span></span><span class="line"><span class="cl">  SetOutPath &#34;$INSTDIR\bin&#34;
+</span></span><span class="line"><span class="cl">  File /r &#34;E:\test\exe\bin\*.*&#34;
+</span></span><span class="line"><span class="cl">  SetOutPath &#34;$INSTDIR\image&#34;
+</span></span><span class="line"><span class="cl">  File /r &#34;E:\test\exe\image\*.*&#34;
+</span></span><span class="line"><span class="cl">  SetOutPath &#34;$INSTDIR\jre&#34;
+</span></span><span class="line"><span class="cl">  File /r &#34;E:\test\exe\jre\*.*&#34;
+</span></span><span class="line"><span class="cl">  SetOutPath &#34;$INSTDIR\libs&#34;
+</span></span><span class="line"><span class="cl">  File /r &#34;E:\test\exe\libs\*.*&#34;
+</span></span><span class="line"><span class="cl">  SetOutPath &#34;$INSTDIR\stl&#34;
+</span></span><span class="line"><span class="cl">  File /r &#34;E:\test\exe\stl\*.*&#34;
+</span></span><span class="line"><span class="cl">  SetOutPath &#34;$INSTDIR\update&#34;
+</span></span><span class="line"><span class="cl">  File /r &#34;E:\test\exe\update\*.*&#34;
+</span></span><span class="line"><span class="cl">  SetOutPath &#34;$INSTDIR\预置模型&#34;
+</span></span><span class="line"><span class="cl">  File /r &#34;E:\test\exe\预置模型\*.*&#34;
+</span></span><span class="line"><span class="cl">  SetOutPath &#34;$INSTDIR&#34;
+</span></span><span class="line"><span class="cl">  File &#34;E:\test\exe\${PRODUCT_NAME}.exe&#34;
+</span></span><span class="line"><span class="cl">  ; 创建开始菜单快捷方式
+</span></span><span class="line"><span class="cl">  CreateDirectory &#34;$SMPROGRAMS\${PRODUCT_NAME}&#34;
+</span></span><span class="line"><span class="cl">  CreateShortCut &#34;$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk&#34; &#34;$INSTDIR\${PRODUCT_NAME}.exe&#34;
+</span></span><span class="line"><span class="cl">  ; 创建桌面菜单快捷方式
+</span></span><span class="line"><span class="cl">  CreateShortCut &#34;$DESKTOP\${PRODUCT_NAME}.lnk&#34; &#34;$INSTDIR\${PRODUCT_NAME}.exe&#34;
+</span></span><span class="line"><span class="cl">SectionEnd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Section -AdditionalIcons
+</span></span><span class="line"><span class="cl">  WriteIniStr &#34;$INSTDIR\EFL官网.url&#34; &#34;InternetShortcut&#34; &#34;URL&#34; &#34;${PRODUCT_WEB_SITE}&#34;
+</span></span><span class="line"><span class="cl">  WriteIniStr &#34;$SMPROGRAMS\${PRODUCT_NAME}\EFL官网.url&#34; &#34;InternetShortcut&#34; &#34;URL&#34; &#34;${PRODUCT_WEB_SITE}&#34;
+</span></span><span class="line"><span class="cl">SectionEnd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Section -Post
+</span></span><span class="line"><span class="cl">  WriteUninstaller &#34;$INSTDIR\uninst.exe&#34;
+</span></span><span class="line"><span class="cl">  WriteRegStr HKLM &#34;${PRODUCT_DIR_REGKEY}&#34; &#34;&#34; &#34;$INSTDIR\${PRODUCT_NAME}.exe&#34;
+</span></span><span class="line"><span class="cl">  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} &#34;${PRODUCT_UNINST_KEY}&#34; &#34;DisplayName&#34; &#34;$(^Name)&#34;
+</span></span><span class="line"><span class="cl">  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} &#34;${PRODUCT_UNINST_KEY}&#34; &#34;UninstallString&#34; &#34;$INSTDIR\uninst.exe&#34;
+</span></span><span class="line"><span class="cl">  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} &#34;${PRODUCT_UNINST_KEY}&#34; &#34;DisplayIcon&#34; &#34;$INSTDIR${PRODUCT_NAME}.exe&#34;
+</span></span><span class="line"><span class="cl">  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} &#34;${PRODUCT_UNINST_KEY}&#34; &#34;DisplayVersion&#34; &#34;${PRODUCT_VERSION}&#34;
+</span></span><span class="line"><span class="cl">  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} &#34;${PRODUCT_UNINST_KEY}&#34; &#34;URLInfoAbout&#34; &#34;${PRODUCT_WEB_SITE}&#34;
+</span></span><span class="line"><span class="cl">  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} &#34;${PRODUCT_UNINST_KEY}&#34; &#34;Publisher&#34; &#34;${PRODUCT_PUBLISHER}&#34;
+</span></span><span class="line"><span class="cl">SectionEnd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/******************************
+</span></span><span class="line"><span class="cl"> *  以下是安装程序的卸载部分  *
+</span></span><span class="line"><span class="cl"> ******************************/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Section Uninstall
+</span></span><span class="line"><span class="cl">  Delete &#34;$INSTDIR\EFL官网.url&#34;
+</span></span><span class="line"><span class="cl">  Delete &#34;$INSTDIR\uninst.exe&#34;
+</span></span><span class="line"><span class="cl">  Delete &#34;$INSTDIR\${PRODUCT_NAME}.exe&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  Delete &#34;$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk&#34;
+</span></span><span class="line"><span class="cl">  Delete &#34;$SMPROGRAMS\${PRODUCT_NAME}\EFL官网.url&#34;
+</span></span><span class="line"><span class="cl">  Delete &#34;$DESKTOP\${PRODUCT_NAME}.lnk&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  RMDir /r &#34;$INSTDIR\预置模型&#34;
+</span></span><span class="line"><span class="cl">  RMDir /r &#34;$INSTDIR\update&#34;
+</span></span><span class="line"><span class="cl">  RMDir /r &#34;$INSTDIR\stl&#34;
+</span></span><span class="line"><span class="cl">  RMDir /r &#34;$INSTDIR\jre&#34;
+</span></span><span class="line"><span class="cl">  RMDir /r &#34;$INSTDIR\libs&#34;
+</span></span><span class="line"><span class="cl">  RMDir /r &#34;$INSTDIR\image&#34;
+</span></span><span class="line"><span class="cl">  RMDir /r &#34;$INSTDIR\bin&#34;
+</span></span><span class="line"><span class="cl">  RMDir /r &#34;$SMPROGRAMS\${PRODUCT_NAME}&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} &#34;${PRODUCT_UNINST_KEY}&#34;
+</span></span><span class="line"><span class="cl">  DeleteRegKey HKLM &#34;${PRODUCT_DIR_REGKEY}&#34;
+</span></span><span class="line"><span class="cl">  SetAutoClose true
+</span></span><span class="line"><span class="cl">SectionEnd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#-- 根据 NSIS 脚本编辑规则，所有 Function 区段必须放置在 Section 区段之后编写，以避免安装程序出现未可预知的问题。--#
+</span></span><span class="line"><span class="cl">Function .onInstSuccess
+</span></span><span class="line"><span class="cl">  ExecShell &#34;&#34; &#34;$INSTDIR\readme.txt&#34;
+</span></span><span class="line"><span class="cl">FunctionEnd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Function un.onInit
+</span></span><span class="line"><span class="cl">  MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 &#34;您确实要完全移除 $(^Name) ，及其所有的组件？&#34; IDYES +2
+</span></span><span class="line"><span class="cl">  Abort
+</span></span><span class="line"><span class="cl">FunctionEnd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Function un.onUninstSuccess
+</span></span><span class="line"><span class="cl">  HideWindow
+</span></span><span class="line"><span class="cl">  MessageBox MB_ICONINFORMATION|MB_OK &#34;$(^Name) 已成功地从您的计算机移除。&#34;
+</span></span><span class="line"><span class="cl">FunctionEnd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="参考链接">参考链接：</h3>
+<ul>
+<li><a href="https://nsis.sourceforge.io/A_slightly_better_Java_Launcher" target="_blank" rel="noopener noreffer">NSIS官网文章参考 </a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-06-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/nsis/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="/nsis/" data-title="NSIS安装脚本" data-hashtags="安装包脚本程序,实用工具"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="/nsis/" data-hashtag="安装包脚本程序"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="/nsis/" data-title="NSIS安装脚本"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="/nsis/" data-title="NSIS安装脚本"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="/nsis/" data-title="NSIS安装脚本"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%AE%89%E8%A3%85%E5%8C%85%E8%84%9A%E6%9C%AC%E7%A8%8B%E5%BA%8F/">安装包脚本程序</a>,&nbsp;<a href="/tags/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/maven-pom/" class="prev" rel="prev" title="Maven-Pom"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Maven-Pom</a>
+            <a href="/ssh2/" class="next" rel="next" title="如何使用 SSH 控制连接 Windows 服务器？">如何使用 SSH 控制连接 Windows 服务器？<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="waline"></div>
+        <script src='https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+        <script>
+		    	new Waline({
+		    	  el: '#waline',
+				  meta: ["nick","mail","link"],
+		    	  requiredMeta: ["nick","mail"],
+		    	  login: "",
+				  placeholder: "评论前需注册并登录，望见谅~",
+		    	  serverURL: "https://waline-test-2639v4859-azad-eng.vercel.app/",
+		    	  avatarCDN: "https://sdn.geekzu.org/avatar/",
+		    	  pageSize:  20 ,
+		    	  avatar: "retro",
+		    	  lang: "zh-CN",
+				  visitor:  true ,
+				  highlight:  true ,
+				  uploadImage:  false 
+		    	});
+		    </script></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container">
+            <div class="footer-line">
+                <span id="run-time"></span>
+            </div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/Azad-eng" target="_blank">Azad-eng</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div class="sidebar_wo">
+          <div class="sidebar_wo" id="lamu">
+            <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png" alt="拉姆" 
+            onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuB.png'" 
+            onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png'" title="回到顶部">
+          </div>
+          <div id="leimu">
+            <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png" alt="雷姆" 
+            onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuB.png'" 
+            onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png'" title="回到底部">
+          </div>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script><script type="text/javascript" src="/js/custom.js"></script></body>
+</html>

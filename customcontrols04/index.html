@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件 -  ~-~-~-&gt;_&lt;) </title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件" />
+<meta property="og:description" content="导航 创建自定义控件的不同方法 使用CSS重新设置现有控件的样式 组合现有控件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/customcontrols04/" /><meta property="og:image" content="/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-13T00:00:00+00:00" /><meta property="og:site_name" content="LoveIt" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/logo.png"/>
+
+<meta name="twitter:title" content="JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件"/>
+<meta name="twitter:description" content="导航 创建自定义控件的不同方法 使用CSS重新设置现有控件的样式 组合现有控件"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="/customcontrols04/" /><link rel="prev" href="/customcontrols03/" /><link rel="next" href="/memo/2024/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/customcontrols04\/"
+        },"image": ["\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "controls, JavaFx, 自定义控件","wordcount":  3519 ,
+        "url": "\/customcontrols04\/","datePublished": "2022-06-08T00:00:00+00:00","dateModified": "2022-06-13T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "azad","logo": "\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Azad-eng"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title=" ~-~-~-&gt;_&lt;) "><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Azad&#39;s Space</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner">
+                        <div class="dropdown">
+                            <a href="/memo/2023/" class="menu-item menu-more dropbtn" title="" ><i class='fa-solid fa-sd-card'></i> 备忘录 
+                            </a>
+                            <div class="menu-more-content dropdown-content"><a href="/memo/2023/" title="" ><i class='fa-solid fa-file-pen'></i> 2023 </a><a href="/memo/2024/" title="" ><i class='fa-solid fa-file'></i> 2024 </a></div>
+                        </div>
+                    <a class="menu-item" href="/friends/"><i class='fas fa-fw fa-fan fa-spin'></i> Azadの友人帐 
+                        </a><a class="menu-item" href="/treasure/"><i class='fas fa-fw fa-toolbox'></i> 百宝箱 
+                        </a><a class="menu-item" href="/reading/"><i class='fas fa-fw fa-toolbox'></i> 阅读记录 
+                        </a><a class="menu-item" href="/about/" title="自我介绍~"><i class='fa-solid fa-skull'></i> 关于 
+                        </a>
+                        <div class="dropdown">
+                            <a href="/posts/" class="menu-item menu-more dropbtn" title="点击查看所有的文章" ><i class='fa-solid fa-folder-tree'></i> 归档 
+                            </a>
+                            <div class="menu-more-content dropdown-content"><a href="/tags/" title="" ><i class='fa-solid fa-tag'></i> 标签 </a><a href="/categories/" title="" ><i class='fa-solid fa-filter'></i> 分类 </a></div>
+                        </div>
+                    <a class="menu-item" href="/memos/"><i class='fab fa-twitter'></i> 废话胶囊 
+                        </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title=" ~-~-~-&gt;_&lt;) "><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Azad&#39;s Space</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/memo/2023/" title=""><i class='fa-solid fa-sd-card'></i>备忘录</a><a class="menu-item" href="/friends/" title=""><i class='fas fa-fw fa-fan fa-spin'></i>Azadの友人帐</a><a class="menu-item" href="/treasure/" title=""><i class='fas fa-fw fa-toolbox'></i>百宝箱</a><a class="menu-item" href="/reading/" title=""><i class='fas fa-fw fa-toolbox'></i>阅读记录</a><a class="menu-item" href="/about/" title="自我介绍~"><i class='fa-solid fa-skull'></i>关于</a><a class="menu-item" href="/posts/" title="点击查看所有的文章"><i class='fa-solid fa-folder-tree'></i>归档</a><a class="menu-item" href="/memos/" title=""><i class='fab fa-twitter'></i>废话胶囊</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Azad-eng" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Azad-eng</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/javafx/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>JavaFx</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-08">2022-06-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3519 字
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/customcontrols04/" class="leancloud_visitors" data-flag-title="JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;
+                <a href="#comments" id="post-meta-vcount" title="查看评论">
+                    <i class="fas fa-comment fa-fw"></i>&nbsp;<span id="/customcontrols04/" class="waline-comment-count"></span>&nbsp;条评论
+                </a></div>
+
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#导航">导航</a></li>
+    <li><a href="#使用control-plus-skin的实现类来自定义全新的组件">使用Control plus Skin的实现类来自定义全新的组件</a></li>
+    <li><a href="#示例demo">示例demo</a></li>
+    <li><a href="#control">Control</a></li>
+    <li><a href="#skin">Skin</a>
+      <ul>
+        <li><a href="#led">LED</a></li>
+        <li><a href="#switch">Switch</a></li>
+      </ul>
+    </li>
+    <li><a href="#css">CSS</a>
+      <ul>
+        <li><a href="#led-1">LED</a></li>
+        <li><a href="#switch-1">Switch</a></li>
+        <li><a href="#styles">Styles</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="导航">导航</h3>
+<p><strong>创建自定义控件的不同方法</strong></p>
+<ul>
+<li><a href="http://azad-eng.github.io/customcontrols01/" target="_blank" rel="noopener noreffer">使用CSS重新设置现有控件的样式</a></li>
+<li><a href="http://azad-eng.github.io/customcontrols02/" target="_blank" rel="noopener noreffer">组合现有控件来创建自定义控件</a></li>
+<li><a href="http://azad-eng.github.io/customcontrols03/" target="_blank" rel="noopener noreffer">扩展现有控件</a></li>
+<li><a href="http://azad-eng.github.io/customcontrols04/" target="_blank" rel="noopener noreffer">使用Control plus Skin类</a></li>
+<li><a href="http://azad-eng.github.io/customcontrols05/" target="_blank" rel="noopener noreffer">使用Region类</a></li>
+</ul>
+<h3 id="使用control-plus-skin的实现类来自定义全新的组件">使用Control plus Skin的实现类来自定义全新的组件</h3>
+<p><code>Control 将包含所有逻辑，而 Skin 将包含所有 UI 相关代码</code></p>
+<p><strong>步骤1：通过<a href="https://helpx.adobe.com/uk/illustrator/using/css-extraction.html" target="_blank" rel="noopener noreffer">矢量绘图程序</a>绘制好组件</strong>
+<figure><a class="lightgallery" href="/images/java/2022/ledSvg.png" title="/images/java/2022/ledSvg.png" data-thumbnail="/images/java/2022/ledSvg.png" data-sub-html="<h2>演示</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/java/2022/ledSvg.png"
+            data-srcset="/images/java/2022/ledSvg.png, /images/java/2022/ledSvg.png 1.5x, /images/java/2022/ledSvg.png 2x"
+            data-sizes="auto"
+            alt="/images/java/2022/ledSvg.png" />
+    </a><figcaption class="image-caption">演示</figcaption>
+    </figure></p>
+<p><strong>步骤2：将矢量图形转换成css代码</strong></p>
+<p><strong>步骤3：创建程序，引用css</strong></p>
+<h3 id="示例demo">示例demo</h3>
+<div class="details admonition example open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>示例<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>自定义全新组件示例</strong> ：展示如何使用 Control 和 Skin 类在 JavaFX 中创建自定义控件—LED开关</p>
+<p>注意：
+<code>由 Control 和 Skin 类创建的自定义控件只有在您为控件提供多个皮肤或者您希望让人们能够为您的控件创建自己的皮肤时才有意义。在任何其他情况下，您应该选择另一种方法（例如，使用基于区域或画布的控件）。因此，通常在 UI 库中使用 Control 和 Skin 方法，其中您有一个 Control 和多个 Skin。</code></p>
+</div>
+        </div>
+    </div>
+<figure><a class="lightgallery" href="/images/java/2022/led-green.png" title="/images/java/2022/led-green.png" data-thumbnail="/images/java/2022/led-green.png" data-sub-html="<h2>LED</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/java/2022/led-green.png"
+            data-srcset="/images/java/2022/led-green.png, /images/java/2022/led-green.png 1.5x, /images/java/2022/led-green.png 2x"
+            data-sizes="auto"
+            alt="/images/java/2022/led-green.png" />
+    </a><figcaption class="image-caption">LED</figcaption>
+    </figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">controlskin</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.application.Application</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.geometry.Insets</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.Scene</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.layout.VBox</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.paint.Color</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.stage.Stage</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">controlskin.CustomControl.SkinType</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author Gerrit Grunwald
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Description: 全新自定义组件程序demo
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoControlSkinBased</span> <span class="kd">extends</span> <span class="n">Application</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">CustomControl</span> <span class="n">ledControl</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">CustomControl</span> <span class="n">switchControl</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ledControl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CustomControl</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ledControl</span><span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ledControl</span><span class="o">.</span><span class="na">setPrefSize</span><span class="o">(</span><span class="n">100</span><span class="o">,</span> <span class="n">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ledControl</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">LIME</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">switchControl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CustomControl</span><span class="o">(</span><span class="n">SkinType</span><span class="o">.</span><span class="na">SWITCH</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">switchControl</span><span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">switchControl</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">web</span><span class="o">(</span><span class="s">&#34;#4bd865&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">switchControl</span><span class="o">.</span><span class="na">stateProperty</span><span class="o">().</span><span class="na">addListener</span><span class="o">((</span><span class="n">o</span><span class="o">,</span> <span class="n">ov</span><span class="o">,</span> <span class="n">nv</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">ledControl</span><span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="n">nv</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="n">Stage</span> <span class="n">stage</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">VBox</span> <span class="n">pane</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VBox</span><span class="o">(</span><span class="n">20</span><span class="o">,</span> <span class="n">ledControl</span><span class="o">,</span> <span class="n">switchControl</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pane</span><span class="o">.</span><span class="na">setPadding</span><span class="o">(</span><span class="k">new</span> <span class="n">Insets</span><span class="o">(</span><span class="n">20</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Scene</span> <span class="n">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scene</span><span class="o">(</span><span class="n">pane</span><span class="o">,</span> <span class="n">200</span><span class="o">,</span> <span class="n">200</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scene</span><span class="o">.</span><span class="na">getStylesheets</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">DemoControlSkinBased</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="s">&#34;/styles.css&#34;</span><span class="o">).</span><span class="na">toExternalForm</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;Control-Skin based Control&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">.</span><span class="na">setScene</span><span class="o">(</span><span class="n">scene</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">stop</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="control">Control</h3>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>前言<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li>
+<p>控件需要两个属性，第一个应该定义 LED 的状态，第二个应该定义 LED 的颜色;</p>
+</li>
+<li>
+<p>众所周知，我们有能力在 JavaFX 中使用 CSS 来设置控件样式，问题是我们如何将 CSS 属性链接到我们在代码中定义的属性？
+答案是使用所谓的 StyleableProperties。这个属性有一个指向 CSS 属性的链接，这意味着如果我们加载一个覆盖例如 -color 属性的 CSS 文件，它将触发我们在代码中定义的属性。这很棒，因为我们可以通过在代码中调用 setColor() 方法或加载覆盖 -color 属性的 CSS 文件来更改属性；</p>
+</li>
+<li>
+<p>最后，我们需要一个 BooleanProperty 来表示控件的状态。为此，我们还可以利用 JavaFX 中的 CSS 特性，即 CSS PseudoClass。这可以看作是一个布尔开关，如果在 CSS 中触发，则可用于为真/假状态定义单独的样式。</p>
+</li>
+</ol>
+</div>
+        </div>
+    </div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">controlskin</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.beans.property.BooleanProperty</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.beans.property.BooleanPropertyBase</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.beans.property.ObjectProperty</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.css.*</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.control.Control</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.control.Skin</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.paint.Color</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author Gerrit Grunwald
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * description：全新自定义的控件——实现功能：开关切换
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomControl</span> <span class="kd">extends</span> <span class="n">Control</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">enum</span> <span class="n">SkinType</span><span class="o">{</span> <span class="n">LED</span><span class="o">,</span> <span class="n">SWITCH</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">StyleablePropertyFactory</span><span class="o">&lt;</span><span class="n">CustomControl</span><span class="o">&gt;</span> <span class="n">FACTORY</span>
+</span></span><span class="line"><span class="cl">            <span class="o">=</span> <span class="k">new</span> <span class="n">StyleablePropertyFactory</span><span class="o">&lt;&gt;(</span><span class="n">Control</span><span class="o">.</span><span class="na">getClassCssMetaData</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** css样式属性 **/</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">CssMetaData</span><span class="o">&lt;</span><span class="n">CustomControl</span><span class="o">,</span> <span class="n">Color</span><span class="o">&gt;</span> <span class="n">COLOR</span>
+</span></span><span class="line"><span class="cl">            <span class="o">=</span> <span class="n">FACTORY</span><span class="o">.</span><span class="na">createColorCssMetaData</span><span class="o">(</span><span class="s">&#34;-color&#34;</span><span class="o">,</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">color</span><span class="o">,</span> <span class="n">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">    <span class="cm">/** css伪类 **/</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">PseudoClass</span> <span class="n">ON_PSEUDO_CLASS</span> <span class="o">=</span> <span class="n">PseudoClass</span><span class="o">.</span><span class="na">getPseudoClass</span><span class="o">(</span><span class="s">&#34;on&#34;</span><span class="o">);</span>       
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/** Properties **/</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">SkinType</span> <span class="n">skinType</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">BooleanProperty</span> <span class="n">state</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">StyleableProperty</span><span class="o">&lt;</span><span class="n">Color</span><span class="o">&gt;</span> <span class="n">color</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 用户代理样式表 **/</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">defaultUserAgentStyleSheet</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">switchUserAgentStyleSheet</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 构造器重载
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">CustomControl</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">(</span><span class="n">SkinType</span><span class="o">.</span><span class="na">LED</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">CustomControl</span><span class="o">(</span><span class="kd">final</span> <span class="n">SkinType</span> <span class="n">skinType</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">getStyleClass</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;custom-control&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">skinType</span> <span class="o">=</span> <span class="n">skinType</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">state</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BooleanPropertyBase</span><span class="o">(</span><span class="kc">false</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">invalidated</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">pseudoClassStateChanged</span><span class="o">(</span><span class="n">ON_PSEUDO_CLASS</span><span class="o">,</span><span class="n">get</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getBean</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="s">&#34;state&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">color</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleStyleableObjectProperty</span><span class="o">&lt;&gt;(</span><span class="n">COLOR</span><span class="o">,</span><span class="k">this</span><span class="o">,</span><span class="s">&#34;color&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * state
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">getState</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setState</span><span class="o">(</span><span class="kd">final</span> <span class="kt">boolean</span> <span class="n">state</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">state</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">state</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">BooleanProperty</span> <span class="nf">stateProperty</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">state</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * color
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Color</span> <span class="nf">getColor</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">color</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setColor</span><span class="o">(</span><span class="kd">final</span> <span class="n">Color</span> <span class="n">color</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">color</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ObjectProperty</span><span class="o">&lt;</span><span class="n">Color</span><span class="o">&gt;</span> <span class="nf">colorProperty</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">(</span><span class="n">ObjectProperty</span><span class="o">&lt;</span><span class="n">Color</span><span class="o">&gt;)</span> <span class="n">color</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * style related
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="n">Skin</span><span class="o">&lt;?&gt;</span> <span class="n">createDefaultSkin</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">switch</span> <span class="o">(</span><span class="n">skinType</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="n">SWITCH</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">SwitchSkin</span><span class="o">(</span><span class="n">CustomControl</span><span class="o">.</span><span class="na">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="n">LED</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">default</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">LedSkin</span><span class="o">(</span><span class="n">CustomControl</span><span class="o">.</span><span class="na">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getUserAgentStylesheet</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">switch</span><span class="o">(</span><span class="n">skinType</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="n">SWITCH</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">switchUserAgentStyleSheet</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">switchUserAgentStyleSheet</span> <span class="o">=</span> <span class="n">CustomControl</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="s">&#34;/switch.css&#34;</span><span class="o">).</span><span class="na">toExternalForm</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">switchUserAgentStyleSheet</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="n">LED</span>   <span class="o">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">default</span>    <span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">defaultUserAgentStyleSheet</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">defaultUserAgentStyleSheet</span> <span class="o">=</span> <span class="n">CustomControl</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="s">&#34;/custom-control.css&#34;</span><span class="o">).</span><span class="na">toExternalForm</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">defaultUserAgentStyleSheet</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">CssMetaData</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Styleable</span><span class="o">,</span> <span class="o">?&gt;&gt;</span> <span class="n">getControlCssMetaData</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">FACTORY</span><span class="o">.</span><span class="na">getCssMetaData</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition bug open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-bug fa-fw" aria-hidden="true"></i>总结<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li>
+<p>通过css样式属性定义了一个名为COLOR的 CssMetaData 对象，而这个对象又定义了将在 CSS 中使用的属性-color；</p>
+</li>
+<li>
+<p>再去css文件中定义这个属性，比如紫色部分：</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-CSS" data-lang="CSS"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>
+<p>PseudoClass ON_PSEUDO_CLASS 定义了到 CSS 伪类“on”的链接，为了使用它，我们通过调用 pseudoClassStateChanged(ON_PSEUDO_CLASS.get()) 在 state 属性的 invalidated() 方法中触发它;</p>
+</li>
+<li>
+<p>为了完成这项工作，我们还需要 CSS 文件中的 on 伪类。请记住，主要 LED 部分（绿色部分）是在 LED 亮起时应从深绿色渐变变为浅绿色渐变的部分。下面是实现此效果所需的 CSS 代码：</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-CSS" data-lang="CSS"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span> <span class="p">.</span><span class="nc">main</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-color</span> <span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="n">from</span> <span class="mi">15</span><span class="kt">%</span> <span class="mi">15</span><span class="kt">%</span> <span class="kc">to</span> <span class="mi">83</span><span class="kt">%</span> <span class="mi">83</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                      <span class="nf">derive</span><span class="p">(</span><span class="o">-</span><span class="kc">color</span><span class="p">,</span> <span class="mi">-80</span><span class="kt">%</span><span class="p">)</span> <span class="mi">0</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                      <span class="nf">derive</span><span class="p">(</span><span class="o">-</span><span class="kc">color</span><span class="p">,</span> <span class="mi">-87</span><span class="kt">%</span><span class="p">)</span> <span class="mi">49</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                      <span class="nf">derive</span><span class="p">(</span><span class="o">-</span><span class="kc">color</span><span class="p">,</span> <span class="mi">-80</span><span class="kt">%</span><span class="p">)</span> <span class="mi">100</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-radius</span><span class="p">:</span> <span class="mi">1024</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span><span class="p">:</span><span class="nd">on</span> <span class="p">.</span><span class="nc">main</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-color</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="n">from</span> <span class="mi">15</span><span class="kt">%</span> <span class="mi">15</span><span class="kt">%</span> <span class="kc">to</span> <span class="mi">83</span><span class="kt">%</span> <span class="mi">83</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                     <span class="nf">derive</span><span class="p">(</span><span class="o">-</span><span class="kc">color</span><span class="p">,</span> <span class="mi">-23</span><span class="kt">%</span><span class="p">)</span> <span class="mi">0</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                     <span class="nf">derive</span><span class="p">(</span><span class="o">-</span><span class="kc">color</span><span class="p">,</span> <span class="mi">-50</span><span class="kt">%</span><span class="p">)</span> <span class="mi">49</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                    <span class="o">-</span><span class="kc">color</span> <span class="mi">100</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>
+<p>我们定义了一个具有 LED 和 SWITCH 的枚举 SkinType，它们将在 getUserAgentStyleSheet() 方法中使用。根据 skinType 变量加载不同的样式表;</p>
+</li>
+<li>
+<p>默认在 custom-control.css 中定义 LED样式，在 switch.css 中定义开关样式。</p>
+</li>
+</ol>
+</div>
+        </div>
+    </div>
+<h3 id="skin">Skin</h3>
+<h4 id="led">LED</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">controlskin</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.beans.InvalidationListener</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.control.SkinBase</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.effect.BlurType</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.effect.DropShadow</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.effect.InnerShadow</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.layout.Region</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.paint.Color</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author Gerrit Grunwald
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * description：led皮肤
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LedSkin</span> <span class="kd">extends</span> <span class="n">SkinBase</span><span class="o">&lt;</span><span class="n">CustomControl</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">PREFERRED_WIDTH</span> <span class="o">=</span> <span class="n">16</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">PREFERRED_HEIGHT</span> <span class="o">=</span> <span class="n">16</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">MINIMUM_WIDTH</span> <span class="o">=</span> <span class="n">8</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">MINIMUM_HEIGHT</span> <span class="o">=</span> <span class="n">8</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">MAXIMUM_WIDTH</span> <span class="o">=</span> <span class="n">1024</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">MAXIMUM_HEIGHT</span> <span class="o">=</span> <span class="n">1024</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">double</span> <span class="n">size</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 组件 **/</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Region</span> <span class="n">frame</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Region</span> <span class="n">main</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Region</span> <span class="n">highlight</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">InnerShadow</span> <span class="n">innerShadow</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">DropShadow</span> <span class="n">glow</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 自定义组件 **/</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">CustomControl</span> <span class="n">control</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 监听器 **/</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">InvalidationListener</span> <span class="n">sizeListener</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">InvalidationListener</span> <span class="n">colorListener</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">InvalidationListener</span> <span class="n">stateListener</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 构造器
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param control 自定义组件
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">LedSkin</span><span class="o">(</span><span class="kd">final</span> <span class="n">CustomControl</span> <span class="n">control</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">control</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">control</span> <span class="o">=</span> <span class="n">control</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sizeListener</span> <span class="o">=</span> <span class="n">o</span> <span class="o">-&gt;</span> <span class="n">handleControlPropertyChanged</span><span class="o">(</span><span class="s">&#34;RESIZE&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">colorListener</span> <span class="o">=</span> <span class="n">o</span> <span class="o">-&gt;</span> <span class="n">handleControlPropertyChanged</span><span class="o">(</span><span class="s">&#34;COLOR&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stateListener</span> <span class="o">=</span> <span class="n">o</span> <span class="o">-&gt;</span> <span class="n">handleControlPropertyChanged</span><span class="o">(</span><span class="s">&#34;STATE&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">initGraphics</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">registerListeners</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 初始化
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initGraphics</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">Double</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getPrefWidth</span><span class="o">(),</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="n">0</span> <span class="o">||</span> <span class="n">Double</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getPrefHeight</span><span class="o">(),</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="n">0</span> <span class="o">||</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Double</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getWidth</span><span class="o">(),</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="n">0</span> <span class="o">||</span> <span class="n">Double</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getHeight</span><span class="o">(),</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getPrefWidth</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">control</span><span class="o">.</span><span class="na">getPrefHeight</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">control</span><span class="o">.</span><span class="na">setPrefSize</span><span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getPrefWidth</span><span class="o">(),</span> <span class="n">control</span><span class="o">.</span><span class="na">getPrefHeight</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">control</span><span class="o">.</span><span class="na">setPrefSize</span><span class="o">(</span><span class="n">PREFERRED_WIDTH</span><span class="o">,</span> <span class="n">PREFERRED_HEIGHT</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Region</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">setAll</span><span class="o">(</span><span class="s">&#34;frame&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">main</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Region</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">main</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">setAll</span><span class="o">(</span><span class="s">&#34;main&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">main</span><span class="o">.</span><span class="na">setStyle</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="s">&#34;-color: &#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">control</span><span class="o">.</span><span class="na">getColor</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">replace</span><span class="o">(</span><span class="s">&#34;0x&#34;</span><span class="o">,</span> <span class="s">&#34;#&#34;</span><span class="o">),</span> <span class="s">&#34;;&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">innerShadow</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InnerShadow</span><span class="o">(</span><span class="n">BlurType</span><span class="o">.</span><span class="na">TWO_PASS_BOX</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Color</span><span class="o">.</span><span class="na">rgb</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">65</span><span class="o">),</span> <span class="n">8</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">glow</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DropShadow</span><span class="o">(</span><span class="n">BlurType</span><span class="o">.</span><span class="na">TWO_PASS_BOX</span><span class="o">,</span> <span class="n">control</span><span class="o">.</span><span class="na">getColor</span><span class="o">(),</span> <span class="n">20</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">glow</span><span class="o">.</span><span class="na">setInput</span><span class="o">(</span><span class="n">innerShadow</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">highlight</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Region</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">highlight</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">setAll</span><span class="o">(</span><span class="s">&#34;highlight&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">getChildren</span><span class="o">().</span><span class="na">addAll</span><span class="o">(</span><span class="n">frame</span><span class="o">,</span> <span class="n">main</span><span class="o">,</span> <span class="n">highlight</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 添加监听器
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">registerListeners</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">widthProperty</span><span class="o">().</span><span class="na">addListener</span><span class="o">(</span><span class="n">sizeListener</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">heightProperty</span><span class="o">().</span><span class="na">addListener</span><span class="o">(</span><span class="n">sizeListener</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">colorProperty</span><span class="o">().</span><span class="na">addListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">stateProperty</span><span class="o">().</span><span class="na">addListener</span><span class="o">(</span><span class="n">stateListener</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">double</span> <span class="nf">computeMinWidth</span><span class="o">(</span><span class="kd">final</span> <span class="kt">double</span> <span class="n">height</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">top</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">right</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">bottom</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">left</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">MINIMUM_WIDTH</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">double</span> <span class="nf">computeMinHeight</span><span class="o">(</span><span class="kd">final</span> <span class="kt">double</span> <span class="n">width</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">top</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">right</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">bottom</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">left</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">MINIMUM_HEIGHT</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">double</span> <span class="nf">computePrefWidth</span><span class="o">(</span><span class="kd">final</span> <span class="kt">double</span> <span class="n">height</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">top</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">right</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">bottom</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">left</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">computePrefWidth</span><span class="o">(</span><span class="n">height</span><span class="o">,</span> <span class="n">top</span><span class="o">,</span> <span class="n">right</span><span class="o">,</span> <span class="n">bottom</span><span class="o">,</span> <span class="n">left</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">double</span> <span class="nf">computePrefHeight</span><span class="o">(</span><span class="kd">final</span> <span class="kt">double</span> <span class="n">width</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">top</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">right</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">bottom</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">left</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">computePrefHeight</span><span class="o">(</span><span class="n">width</span><span class="o">,</span> <span class="n">top</span><span class="o">,</span> <span class="n">right</span><span class="o">,</span> <span class="n">bottom</span><span class="o">,</span> <span class="n">left</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">double</span> <span class="nf">computeMaxWidth</span><span class="o">(</span><span class="kd">final</span> <span class="kt">double</span> <span class="n">width</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">top</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">right</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">bottom</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">left</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">MAXIMUM_WIDTH</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">double</span> <span class="nf">computeMaxHeight</span><span class="o">(</span><span class="kd">final</span> <span class="kt">double</span> <span class="n">width</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">top</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">right</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">bottom</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">left</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">MAXIMUM_HEIGHT</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 处理控件属性变化
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">handleControlPropertyChanged</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">property</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="s">&#34;RESIZE&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">property</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">resize</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="s">&#34;COLOR&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">property</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">main</span><span class="o">.</span><span class="na">setStyle</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="s">&#34;-color: &#34;</span><span class="o">,</span> <span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getColor</span><span class="o">()).</span><span class="na">toString</span><span class="o">().</span><span class="na">replace</span><span class="o">(</span><span class="s">&#34;0x&#34;</span><span class="o">,</span> <span class="s">&#34;#&#34;</span><span class="o">),</span> <span class="s">&#34;;&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">resize</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="s">&#34;STATE&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">property</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">main</span><span class="o">.</span><span class="na">setEffect</span><span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">?</span> <span class="n">glow</span> <span class="o">:</span> <span class="n">innerShadow</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 注销监听器
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">dispose</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">widthProperty</span><span class="o">().</span><span class="na">removeListener</span><span class="o">(</span><span class="n">sizeListener</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">heightProperty</span><span class="o">().</span><span class="na">removeListener</span><span class="o">(</span><span class="n">sizeListener</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">colorProperty</span><span class="o">().</span><span class="na">removeListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">stateProperty</span><span class="o">().</span><span class="na">removeListener</span><span class="o">(</span><span class="n">stateListener</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 布局
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">layoutChildren</span><span class="o">(</span><span class="kd">final</span> <span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">y</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">width</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">layoutChildren</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">resize</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">width</span> <span class="o">=</span> <span class="n">control</span><span class="o">.</span><span class="na">getWidth</span><span class="o">()</span> <span class="o">-</span> <span class="n">control</span><span class="o">.</span><span class="na">getInsets</span><span class="o">().</span><span class="na">getLeft</span><span class="o">()</span> <span class="o">-</span> <span class="n">control</span><span class="o">.</span><span class="na">getInsets</span><span class="o">().</span><span class="na">getRight</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">height</span> <span class="o">=</span> <span class="n">control</span><span class="o">.</span><span class="na">getHeight</span><span class="o">()</span> <span class="o">-</span> <span class="n">control</span><span class="o">.</span><span class="na">getInsets</span><span class="o">().</span><span class="na">getTop</span><span class="o">()</span> <span class="o">-</span> <span class="n">control</span><span class="o">.</span><span class="na">getInsets</span><span class="o">().</span><span class="na">getBottom</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span> <span class="o">=</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="n">height</span> <span class="o">?</span> <span class="n">width</span> <span class="o">:</span> <span class="n">height</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">innerShadow</span><span class="o">.</span><span class="na">setRadius</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">07</span> <span class="o">*</span> <span class="n">size</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">glow</span><span class="o">.</span><span class="na">setRadius</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">36</span> <span class="o">*</span> <span class="n">size</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">glow</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getColor</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">frame</span><span class="o">.</span><span class="na">setMaxSize</span><span class="o">(</span><span class="n">size</span><span class="o">,</span> <span class="n">size</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">main</span><span class="o">.</span><span class="na">setMaxSize</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">72</span> <span class="o">*</span> <span class="n">size</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">72</span> <span class="o">*</span> <span class="n">size</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">main</span><span class="o">.</span><span class="na">relocate</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">14</span> <span class="o">*</span> <span class="n">size</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">14</span> <span class="o">*</span> <span class="n">size</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">main</span><span class="o">.</span><span class="na">setEffect</span><span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">?</span> <span class="n">glow</span> <span class="o">:</span> <span class="n">innerShadow</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">highlight</span><span class="o">.</span><span class="na">setMaxSize</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">58</span> <span class="o">*</span> <span class="n">size</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">58</span> <span class="o">*</span> <span class="n">size</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">highlight</span><span class="o">.</span><span class="na">relocate</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">21</span> <span class="o">*</span> <span class="n">size</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">21</span> <span class="o">*</span> <span class="n">size</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition bug open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-bug fa-fw" aria-hidden="true"></i>总结<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li>
+<p>主要思想是使用三个 Region 对象（frame-main-highlight，对于 LED 的每一层一个 Region）并使用 CSS 设置它们的样式。使用这种方法，我们只需要注意区域的大小和定位。其余的将在 CSS 中完成；</p>
+</li>
+<li>
+<p>在 LedSkin 中，为我们的属性定义了侦听器，以便我们可以对状态和颜色的变化做出反应；</p>
+</li>
+<li>
+<p>Skin 类都有一个 dispose 方法，您应该使用它来取消注册侦听器并进行清理，以避免在更改控件的 Skin 时发生内存泄漏。</p>
+</li>
+</ol>
+</div>
+        </div>
+    </div>
+<h4 id="switch">Switch</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">controlskin</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.animation.TranslateTransition</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.beans.InvalidationListener</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.event.EventHandler</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.control.SkinBase</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.input.MouseEvent</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.layout.Pane</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.scene.layout.Region</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javafx.util.Duration</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author Gerrit Grunwald
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * description：切换开关皮肤
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SwitchSkin</span> <span class="kd">extends</span> <span class="n">SkinBase</span><span class="o">&lt;</span><span class="n">CustomControl</span><span class="o">&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">PREFERRED_WIDTH</span> <span class="o">=</span> <span class="n">76</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">PREFERRED_HEIGHT</span> <span class="o">=</span> <span class="n">46</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Region</span> <span class="n">switchBackground</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Region</span> <span class="n">thumb</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Pane</span> <span class="n">pane</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">TranslateTransition</span> <span class="n">translate</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">CustomControl</span> <span class="n">control</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">InvalidationListener</span> <span class="n">colorListener</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">InvalidationListener</span> <span class="n">state</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">MouseEvent</span><span class="o">&gt;</span> <span class="n">mouseEventHandler</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 构造器
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param control 自定义组件
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">SwitchSkin</span><span class="o">(</span><span class="kd">final</span> <span class="n">CustomControl</span> <span class="n">control</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">control</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">control</span> <span class="o">=</span> <span class="n">control</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">colorListener</span> <span class="o">=</span> <span class="n">o</span> <span class="o">-&gt;</span> <span class="n">handleControlPropertyChanged</span><span class="o">(</span><span class="s">&#34;COLOR&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">state</span> <span class="o">=</span> <span class="n">o</span> <span class="o">-&gt;</span> <span class="n">handleControlPropertyChanged</span><span class="o">(</span><span class="s">&#34;STATE&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mouseEventHandler</span> <span class="o">=</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="k">this</span><span class="o">.</span><span class="na">control</span><span class="o">.</span><span class="na">setState</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">control</span><span class="o">.</span><span class="na">getState</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">initGraphics</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">registerListeners</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 初始化
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initGraphics</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">switchBackground</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Region</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">switchBackground</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;switch-background&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">switchBackground</span><span class="o">.</span><span class="na">setStyle</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="s">&#34;-color: &#34;</span><span class="o">,</span> <span class="n">control</span><span class="o">.</span><span class="na">getColor</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">replace</span><span class="o">(</span><span class="s">&#34;0x&#34;</span><span class="o">,</span> <span class="s">&#34;#&#34;</span><span class="o">),</span> <span class="s">&#34;;&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">thumb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Region</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">thumb</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;thumb&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">thumb</span><span class="o">.</span><span class="na">setMouseTransparent</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getState</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">thumb</span><span class="o">.</span><span class="na">setTranslateX</span><span class="o">(</span><span class="n">32</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">translate</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TranslateTransition</span><span class="o">(</span><span class="n">Duration</span><span class="o">.</span><span class="na">millis</span><span class="o">(</span><span class="n">70</span><span class="o">),</span> <span class="n">thumb</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pane</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pane</span><span class="o">(</span><span class="n">switchBackground</span><span class="o">,</span> <span class="n">thumb</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">getChildren</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">pane</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 添加监听器
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">registerListeners</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">colorProperty</span><span class="o">().</span><span class="na">addListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">stateProperty</span><span class="o">().</span><span class="na">addListener</span><span class="o">(</span><span class="n">state</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">switchBackground</span><span class="o">.</span><span class="na">addEventHandler</span><span class="o">(</span><span class="n">MouseEvent</span><span class="o">.</span><span class="na">MOUSE_PRESSED</span><span class="o">,</span> <span class="n">mouseEventHandler</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 处理控件属性变化
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">layoutChildren</span><span class="o">(</span><span class="kd">final</span> <span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">y</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">width</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">layoutChildren</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">thumb</span><span class="o">.</span><span class="na">relocate</span><span class="o">((</span><span class="n">width</span> <span class="o">-</span> <span class="n">PREFERRED_WIDTH</span><span class="o">)</span> <span class="o">*</span> <span class="n">0</span><span class="o">.</span><span class="na">5</span><span class="o">,</span> <span class="o">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">PREFERRED_HEIGHT</span><span class="o">)</span> <span class="o">*</span> <span class="n">0</span><span class="o">.</span><span class="na">5</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">switchBackground</span><span class="o">.</span><span class="na">relocate</span><span class="o">((</span><span class="n">width</span> <span class="o">-</span> <span class="n">PREFERRED_WIDTH</span><span class="o">)</span> <span class="o">*</span> <span class="n">0</span><span class="o">.</span><span class="na">5</span><span class="o">,</span> <span class="o">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">PREFERRED_HEIGHT</span><span class="o">)</span> <span class="o">*</span> <span class="n">0</span><span class="o">.</span><span class="na">5</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">handleControlPropertyChanged</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">property</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="s">&#34;COLOR&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">property</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">switchBackground</span><span class="o">.</span><span class="na">setStyle</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="s">&#34;-color: &#34;</span><span class="o">,</span> <span class="n">control</span><span class="o">.</span><span class="na">getColor</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">replace</span><span class="o">(</span><span class="s">&#34;0x&#34;</span><span class="o">,</span> <span class="s">&#34;#&#34;</span><span class="o">),</span> <span class="s">&#34;;&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="s">&#34;STATE&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">property</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">control</span><span class="o">.</span><span class="na">getState</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// move thumb to the right
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">translate</span><span class="o">.</span><span class="na">setFromX</span><span class="o">(</span><span class="n">2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">translate</span><span class="o">.</span><span class="na">setToX</span><span class="o">(</span><span class="n">32</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// move thumb to the left
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">translate</span><span class="o">.</span><span class="na">setFromX</span><span class="o">(</span><span class="n">32</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">translate</span><span class="o">.</span><span class="na">setToX</span><span class="o">(</span><span class="n">2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">translate</span><span class="o">.</span><span class="na">play</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 注销监听器
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">dispose</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">colorProperty</span><span class="o">().</span><span class="na">removeListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control</span><span class="o">.</span><span class="na">stateProperty</span><span class="o">().</span><span class="na">removeListener</span><span class="o">(</span><span class="n">state</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">switchBackground</span><span class="o">.</span><span class="na">removeEventHandler</span><span class="o">(</span><span class="n">MouseEvent</span><span class="o">.</span><span class="na">MOUSE_PRESSED</span><span class="o">,</span> <span class="n">mouseEventHandler</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition bug open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-bug fa-fw" aria-hidden="true"></i>总结<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li>
+<p>这个 Control 甚至只需要两个 Region。一个用于背景(switchBackground)，一个用于拇指(thumb);</p>
+</li>
+<li>
+<p>除了视觉设计之外，LED 和开关之间的最大区别在于您可以通过点击开关与它进行交互。意思是说我们需要在背景区域中添加一个 MouseEvent.MOUSE_PRESSED 监听器，并使拇指区域鼠标透明。当鼠标事件监听器被触发时，我们需要切换状态并将拇指动画到另一边。</p>
+</li>
+</ol>
+</div>
+        </div>
+    </div>
+<h3 id="css">CSS</h3>
+<h4 id="led-1">LED</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-CSS" data-lang="CSS"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span> <span class="p">.</span><span class="nc">frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-color</span> <span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="n">from</span> <span class="mi">14</span><span class="kt">%</span> <span class="mi">14</span><span class="kt">%</span> <span class="kc">to</span> <span class="mi">84</span><span class="kt">%</span> <span class="mi">84</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="nb">rgba</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">0.64706</span><span class="p">)</span> <span class="mi">0</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="nb">rgba</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">0.64706</span><span class="p">)</span> <span class="mi">15</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="nb">rgba</span><span class="p">(</span><span class="mi">41</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mf">0.64706</span><span class="p">)</span> <span class="mi">26</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="nb">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mf">0.40631</span><span class="p">)</span> <span class="mi">85</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="nb">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mf">0.3451</span><span class="p">)</span> <span class="mi">100</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-radius</span><span class="p">:</span> <span class="mi">1024</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span> <span class="p">.</span><span class="nc">main</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-color</span> <span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="n">from</span> <span class="mi">15</span><span class="kt">%</span> <span class="mi">15</span><span class="kt">%</span> <span class="kc">to</span> <span class="mi">83</span><span class="kt">%</span> <span class="mi">83</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="nf">derive</span><span class="p">(</span><span class="o">-</span><span class="kc">color</span><span class="p">,</span> <span class="mi">-80</span><span class="kt">%</span><span class="p">)</span> <span class="mi">0</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="nf">derive</span><span class="p">(</span><span class="o">-</span><span class="kc">color</span><span class="p">,</span> <span class="mi">-87</span><span class="kt">%</span><span class="p">)</span> <span class="mi">49</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="nf">derive</span><span class="p">(</span><span class="o">-</span><span class="kc">color</span><span class="p">,</span> <span class="mi">-80</span><span class="kt">%</span><span class="p">)</span> <span class="mi">100</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-radius</span><span class="p">:</span> <span class="mi">1024</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span><span class="p">:</span><span class="nd">on</span> <span class="p">.</span><span class="nc">main</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-color</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="n">from</span> <span class="mi">15</span><span class="kt">%</span> <span class="mi">15</span><span class="kt">%</span> <span class="kc">to</span> <span class="mi">83</span><span class="kt">%</span> <span class="mi">83</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                          <span class="nf">derive</span><span class="p">(</span><span class="o">-</span><span class="kc">color</span><span class="p">,</span> <span class="mi">-23</span><span class="kt">%</span><span class="p">)</span> <span class="mi">0</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                          <span class="nf">derive</span><span class="p">(</span><span class="o">-</span><span class="kc">color</span><span class="p">,</span> <span class="mi">-50</span><span class="kt">%</span><span class="p">)</span> <span class="mi">49</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                          <span class="o">-</span><span class="kc">color</span> <span class="mi">100</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span> <span class="p">.</span><span class="nc">highlight</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-color</span> <span class="p">:</span> <span class="nb">radial-gradient</span><span class="p">(</span><span class="kc">center</span> <span class="mi">15</span><span class="kt">%</span> <span class="mi">15</span><span class="kt">%</span><span class="p">,</span> <span class="n">radius</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span> <span class="kc">white</span> <span class="mi">0</span><span class="kt">%</span><span class="p">,</span> <span class="kc">transparent</span> <span class="mi">100</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-radius</span><span class="p">:</span> <span class="mi">1024</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition bug open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-bug fa-fw" aria-hidden="true"></i>总结<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li>
+<p>在该CSS 文件中，实际上只是定义了每个区域的背景半径和始终为渐变的绘制；</p>
+</li>
+<li>
+<p>通过触发 :on 伪类，我们只会将渐变从较暗的版本更改为较亮的版本，仅此而已。</p>
+</li>
+</ol>
+</div>
+        </div>
+    </div>
+<h4 id="switch-1">Switch</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-CSS" data-lang="CSS"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span> <span class="p">.</span><span class="nc">switch-background</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-pref-width</span>       <span class="p">:</span> <span class="mi">76</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-pref-height</span>      <span class="p">:</span> <span class="mi">46</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-min-width</span>        <span class="p">:</span> <span class="mi">76</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-min-height</span>       <span class="p">:</span> <span class="mi">46</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-max-width</span>        <span class="p">:</span> <span class="mi">76</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-max-height</span>       <span class="p">:</span> <span class="mi">46</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-radius</span><span class="p">:</span> <span class="mi">1024</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-color</span> <span class="p">:</span> <span class="mh">#a3a4a6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span><span class="p">:</span><span class="nd">on</span> <span class="p">.</span><span class="nc">switch-background</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-radius</span><span class="p">:</span> <span class="mi">1024</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-color</span> <span class="p">:</span> <span class="o">-</span><span class="kc">color</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span> <span class="p">.</span><span class="nc">thumb</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-translate-x</span>      <span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-translate-y</span>      <span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-pref-width</span>       <span class="p">:</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-pref-height</span>      <span class="p">:</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-min-width</span>        <span class="p">:</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-min-height</span>       <span class="p">:</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-max-width</span>        <span class="p">:</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-max-height</span>       <span class="p">:</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-radius</span><span class="p">:</span> <span class="mi">1024</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-background-color</span> <span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="n">fx-effect</span>           <span class="p">:</span> <span class="nf">dropshadow</span><span class="p">(</span><span class="n">two</span><span class="o">-</span><span class="n">pass</span><span class="o">-</span><span class="n">box</span><span class="p">,</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="styles">Styles</h4>
+<figure><a class="lightgallery" href="/images/java/2022/led-change.png" title="/images/java/2022/led-change.png" data-thumbnail="/images/java/2022/led-change.png" data-sub-html="<h2>演示</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/java/2022/led-change.png"
+            data-srcset="/images/java/2022/led-change.png, /images/java/2022/led-change.png 1.5x, /images/java/2022/led-change.png 2x"
+            data-sizes="auto"
+            alt="/images/java/2022/led-change.png" />
+    </a><figcaption class="image-caption">演示</figcaption>
+    </figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-CSS" data-lang="CSS"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="k">color</span><span class="p">:</span> <span class="kc">magenta</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>技巧<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>通过添加场景样式表覆盖 CSS 文件中的一个属性-color，控件属性就会被覆盖，而无需更改代码，这显示了 CSS 的强大功能：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">scene</span><span class="o">.</span><span class="na">getStylesheets</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">ClassNameHere</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="s">&#34;/styles.css&#34;</span><span class="o">).</span><span class="na">toExternalForm</span><span class="o">());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-CSS" data-lang="CSS"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">custom-control</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">-</span><span class="k">color</span><span class="p">:</span> <span class="kc">magenta</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<h3 id="参考链接">参考链接</h3>
+<ul>
+<li><a href="https://foojay.io/today/custom-controls-in-javafx-part-iv/" target="_blank" rel="noopener noreffer">Custom Controls in JavaFX (Part 4)</a></li>
+<li><a href="https://github.com/HanSolo/JavaFXCustomControls" target="_blank" rel="noopener noreffer">HanSolo/JavaFXCustomControls(github)</a></li>
+<li><a href="https://helpx.adobe.com/uk/illustrator/using/css-extraction.html" target="_blank" rel="noopener noreffer">adobe illustrator to CSS——矢量绘图程序：视觉编码之操作文档</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-06-13</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/customcontrols04/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="/customcontrols04/" data-title="JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件" data-hashtags="controls,JavaFx,自定义控件"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="/customcontrols04/" data-hashtag="controls"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="/customcontrols04/" data-title="JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="/customcontrols04/" data-title="JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="/customcontrols04/" data-title="JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/controls/">controls</a>,&nbsp;<a href="/tags/javafx/">JavaFx</a>,&nbsp;<a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/">自定义控件</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/customcontrols03/" class="prev" rel="prev" title="JavaFx自定义控件（三）- 扩展现有控件来创建自定义控件"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>JavaFx自定义控件（三）- 扩展现有控件来创建自定义控件</a>
+            <a href="/memo/2024/" class="next" rel="next" title="2024">2024<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="waline"></div>
+        <script src='https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+        <script>
+		    	new Waline({
+		    	  el: '#waline',
+				  meta: ["nick","mail","link"],
+		    	  requiredMeta: ["nick","mail"],
+		    	  login: "",
+				  placeholder: "评论前需注册并登录，望见谅~",
+		    	  serverURL: "https://waline-test-2639v4859-azad-eng.vercel.app/",
+		    	  avatarCDN: "https://sdn.geekzu.org/avatar/",
+		    	  pageSize:  20 ,
+		    	  avatar: "retro",
+		    	  lang: "zh-CN",
+				  visitor:  true ,
+				  highlight:  true ,
+				  uploadImage:  false 
+		    	});
+		    </script></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container">
+            <div class="footer-line">
+                <span id="run-time"></span>
+            </div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/Azad-eng" target="_blank">Azad-eng</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div class="sidebar_wo">
+          <div class="sidebar_wo" id="lamu">
+            <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png" alt="拉姆" 
+            onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuB.png'" 
+            onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png'" title="回到顶部">
+          </div>
+          <div id="leimu">
+            <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png" alt="雷姆" 
+            onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuB.png'" 
+            onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png'" title="回到底部">
+          </div>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script><script type="text/javascript" src="/js/custom.js"></script></body>
+</html>
