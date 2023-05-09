@@ -1,7 +1,7 @@
 # 2023
 
 
-### 通用命令摘要
+### DOS(磁盘操作系统)
 ##### 1. 文件夹操作
 
 - **l**ist**s** 当前目录下的所有文件
@@ -65,73 +65,8 @@ unzip <zipFile>
 `FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"))`
 
 ##### 2. 显示version control
-取消勾选`File-Settings-Version Control-Commit-[Use non-modal commit interface]`
-
-### Github相关
-#### 配置ssh免密登录
-**step1** 生成密钥对
-```bash
-$ ssh-keygen -t rsa -C "test@email.com"
-```
-
-**step2** 检查电脑系统用户目录下是否出现.ssh文件夹（ls: id_rsa,id_rsa.pub
-
-**step3** 登录 github 打开个人中心 点击 `Settings-SSH and GPG keys-New SSHkey`，填写标题（比如：设备名+ssh -> sv7-ssh)，
-将id_rsa.pub文件的全部内容粘贴进去
-
-### BLOG相关
-##### 1. 打开本地博客
-```bash
-$ hugo server -e production --disableFastRender --port=1515 -D
-```
-##### 2. 更新博客网站内容流程
-**step1-** 关闭本地博客
-
-**step2-** 博客项目下打开bash
-```bash
-$ hugo
-$ cd public
-$ git status
-$ git add .
-$ git commit -a -m "xxxx"
-$ git push -u origin master --force
-```
-**step3-** 确认github项目是否更新
-
-**step4-** 确认项目-Settings-Pages-site是否更新
-
-**step5-** 点击Visit site
-
-##### 3. [LoveIt主题admonition样式代码](https://lewky.cn/posts/hugo-3.html/#%E4%B8%BB%E9%A2%98%E8%87%AA%E5%B8%A6%E7%9A%84admonition%E6%A0%B7%E5%BC%8F)
-
-##### 4. 注意事项
-- 项目bin目录地址更改以后，环境变量里的hugo/bin地址也要相应改动
-
-##### 5.文章属性配置
-title: "标题"
-
-subTitle: "副标题"
-
-description: "主页显示描述，与<!- -more- -> 搭配使用，如果没有该属性，主页显示正文开头"
-
-hiddenFromHomePage: true #文章是否出现在主页
-
-url: /ZenMotor/    #文章链接地址
-
-tags: [ "标签0", "标签1", "..."  ]
-
-categories:
-  - "分类0"
-  - "分类1"
-  - ...
-  
-date: 2022-02-22    #创建日期
-
-lastmod: 2022-2-22    #更新日期
-
-comment: false    #是否打开评论
-
-draft: true    #是否为草稿，是则部署时会不显示文章
+点击`VCS-Browse VCS Respository-Show Git Respository Log`
+|| 取消勾选`File-Settings-Version Control-Commit-[Use non-modal commit interface]`
 
 ### JAVA
 ##### 经验总结
@@ -249,10 +184,20 @@ ls -l filename
 搜索任意API文档 包名关键字+Java doc
 ##### 1.下载任意网页的图标（favicon）
 地址搜索栏：`域名/favicon.ico`
-##### Git疑难杂症
-fetch-pack: unexpected disconnect while reading sideband packet early EOF unpack-objects failed
-解决：git bash运行 `git config --global pack.windowsMemory 256m`
 
-##### docker
-docker run -d --name memos -p 8081:5230 -v E:/myStudySpace/Azad-Home/memoother/memos:/var/opt/memos ghcr.io/usememos/memos:latest
-
+##### 2.项目启动端口被占用的解决办法
+1.查看被占用的端口进程：15490是被占用的端口号
+```cmd
+netstat -aon|findtr 15490
+-> TCP    127.0.0.1:15490        0.0.0.0:0 
+```
+2.根据PID找到被占用端口的进程：15248是PID
+```cmd
+tasklist|findstr 15248
+-> v2ray.exe                    15248 Console                    4     26,032 K
+```
+3.通过进程名称终止进程
+```cmd
+taskkill /f /t /im v2ray.exe
+-> 成功: 已终止 PID 15248 (属于 PID 15156 子进程)的进程
+```

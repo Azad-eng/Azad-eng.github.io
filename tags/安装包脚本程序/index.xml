@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>安装包脚本程序 - 标签 -  ~-~-~-&gt;_&lt;) </title>
-        <link>/tags/%E5%AE%89%E8%A3%85%E5%8C%85%E8%84%9A%E6%9C%AC%E7%A8%8B%E5%BA%8F/</link>
+        <link>https://azad-eng.space/tags/%E5%AE%89%E8%A3%85%E5%8C%85%E8%84%9A%E6%9C%AC%E7%A8%8B%E5%BA%8F/</link>
         <description>安装包脚本程序 - 标签 -  ~-~-~-&gt;_&lt;) </description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1574726350@qq.com (Azad-eng)</managingEditor>
-            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Jun 2022 03:40:46 &#43;0800</lastBuildDate><atom:link href="/tags/%E5%AE%89%E8%A3%85%E5%8C%85%E8%84%9A%E6%9C%AC%E7%A8%8B%E5%BA%8F/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Jun 2022 03:40:46 &#43;0800</lastBuildDate><atom:link href="https://azad-eng.space/tags/%E5%AE%89%E8%A3%85%E5%8C%85%E8%84%9A%E6%9C%AC%E7%A8%8B%E5%BA%8F/" rel="self" type="application/rss+xml" /><item>
     <title>NSIS安装脚本</title>
-    <link>/nsis/</link>
+    <link>https://azad-eng.space/nsis/</link>
     <pubDate>Wed, 01 Jun 2022 03:40:46 &#43;0800</pubDate>
     <author>Azad-eng</author>
-    <guid>/nsis/</guid>
+    <guid>https://azad-eng.space/nsis/</guid>
     <description><![CDATA[使用nsis制作Java程序安装包的记录，nsis还可以直接把jar包生成exe可执行文件，目前使用launch4j来制作exe]]></description>
 </item>
 </channel>

@@ -1,7 +1,7 @@
-# ( ^_^ )BB叨叨/~~
+# ( ^_^ )废话💊
 
 ---
-title: "( ^_^ )BB叨叨/~~"
+title: "( ^_^ )废话💊"
 layout: "memos"
 type: 'memos'
 comment: false

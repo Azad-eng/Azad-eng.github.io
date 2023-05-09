@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Maven -  ~-~-~-&gt;_&lt;) </title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="Maven" />
+<meta property="og:description" content="Maven简介 是一个软件项目管理及自动构建工具，主要解决了软件构建的两方" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://azad-eng.space/maven/" /><meta property="og:image" content="https://azad-eng.space/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-10T16:20:05+08:00" />
+<meta property="article:modified_time" content="2023-05-10T16:20:05+08:00" /><meta property="og:site_name" content="LoveIt" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://azad-eng.space/logo.png"/>
+
+<meta name="twitter:title" content="Maven"/>
+<meta name="twitter:description" content="Maven简介 是一个软件项目管理及自动构建工具，主要解决了软件构建的两方"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://azad-eng.space/maven/" /><link rel="prev" href="https://azad-eng.space/hugo/" /><link rel="next" href="https://azad-eng.space/badminton/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Maven",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/azad-eng.space\/maven\/"
+        },"image": ["https:\/\/azad-eng.space\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "maven","wordcount":  459 ,
+        "url": "https:\/\/azad-eng.space\/maven\/","datePublished": "2023-05-10T16:20:05+08:00","dateModified": "2023-05-10T16:20:05+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "azad","logo": "https:\/\/azad-eng.space\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Azad-eng"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title=" ~-~-~-&gt;_&lt;) "><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Azad&#39;s Space</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/memos/"><i class='fab fa-twitter'></i> 嘀咕 
+                        </a>
+                        <div class="dropdown">
+                            <a href="/posts/" class="menu-item menu-more dropbtn" title="点击查看所有的文章" ><i class='fas fa-blog'></i> 博客 
+                            </a>
+                            <div class="menu-more-content dropdown-content"><a href="/categories/" title="" ><i class='fas fa-stream'></i> 分类 </a><a href="/tags/" title="" ><i class='fa-solid fa-tag'></i> 标签 </a></div>
+                        </div>
+                    
+                        <div class="dropdown">
+                            <a href="/memo/2023/" class="menu-item menu-more dropbtn" title="" ><i class='fa-solid fa-sd-card'></i> 备忘录 
+                            </a>
+                            <div class="menu-more-content dropdown-content"><a href="/memo/2023/" title="" ><i class='fas fa-file-pen'></i> 2023 </a><a href="/memo/2024/" title="" ><i class='fas fa-file'></i> 2024 </a></div>
+                        </div>
+                    <a class="menu-item" href="/reading/"><i class='fas fa-book'></i> 阅读 
+                        </a><a class="menu-item" href="/treasure/"><i class='fas fa-fw fa-toolbox'></i> 百宝箱 
+                        </a><a class="menu-item" href="https://wbo.ophir.dev/boards/azad" rel="noopener noreffer" target="_blank"><i class='fab fa-pinterest'></i> 共享画板 
+                        </a><a class="menu-item" href="/friends/"><i class='fas fa-fw fa-fan fa-spin'></i> Azadの友人帐 
+                        </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title=" ~-~-~-&gt;_&lt;) "><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>Azad&#39;s Space</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/memos/" title=""><i class='fab fa-twitter'></i>嘀咕</a><a class="menu-item" href="/posts/" title="点击查看所有的文章"><i class='fas fa-blog'></i>博客</a><a class="menu-item" href="/memo/2023/" title=""><i class='fa-solid fa-sd-card'></i>备忘录</a><a class="menu-item" href="/reading/" title=""><i class='fas fa-book'></i>阅读</a><a class="menu-item" href="/treasure/" title=""><i class='fas fa-fw fa-toolbox'></i>百宝箱</a><a class="menu-item" href="https://wbo.ophir.dev/boards/azad" title="" rel="noopener noreffer" target="_blank"><i class='fab fa-pinterest'></i>共享画板</a><a class="menu-item" href="/friends/" title=""><i class='fas fa-fw fa-fan fa-spin'></i>Azadの友人帐</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Maven</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/Azad-eng" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Azad-eng</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>工作总结</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-05-10">2023-05-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 459 字
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/maven/" class="leancloud_visitors" data-flag-title="Maven">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;
+                <a href="#comments" id="post-meta-vcount" title="查看评论">
+                    <i class="fas fa-comment fa-fw"></i>&nbsp;<span id="/maven/" class="waline-comment-count"></span>&nbsp;条评论
+                </a></div>
+
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#maven简介">Maven简介</a></li>
+    <li><a href="#maven工具的安装和配置">Maven工具的安装和配置</a></li>
+    <li><a href="#在idea中配置maven">在IDEA中配置Maven</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="maven简介">Maven简介</h3>
+<p>是一个软件项目管理及自动构建工具，主要解决了软件构建的两方面问题：一是软件是如何构建的，二是软件的依赖关系</p>
+<h3 id="maven工具的安装和配置">Maven工具的安装和配置</h3>
+<p><strong>1.官网下载<a href="https://maven.apache.org/download.cgi" target="_blank" rel="noopener noreffer">Maven</a>:</strong> 选择Binary zip archive</p>
+<p><strong>2.配置环境变量：</strong><br>
+添加系统变量（变量名：M2_HOME，变量值：maven安装目录D:\software\apache-maven-3.8.4），然后将变量名添加到path里（% M2_HOME %\bin<br>
+<strong>3.验证是否安装成功</strong> mvn –v
+<a class="lightgallery" href="/images/EFL/2023/maven1.png" title="/images/EFL/2023/maven1.png" data-thumbnail="/images/EFL/2023/maven1.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/EFL/2023/maven1.png"
+            data-srcset="/images/EFL/2023/maven1.png, /images/EFL/2023/maven1.png 1.5x, /images/EFL/2023/maven1.png 2x"
+            data-sizes="auto"
+            alt="/images/EFL/2023/maven1.png" />
+    </a></p>
+<h3 id="在idea中配置maven">在IDEA中配置Maven</h3>
+<div class="details admonition question open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-question-circle fa-fw" aria-hidden="true"></i>为什么IDEA中有内置的Maven，还有自己配置？<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><code>因为内置的maven修改settings.xml文件不方便，比如修改本机仓库地址不便等...所以需要使用自己安装的maven来覆盖IDEA中默认的配置，即在IDEA中指定maven的安装位置等信息</code></div>
+        </div>
+    </div>
+<p><strong>1.IDEA配置Maven的具体位置:</strong><br>
+<a class="lightgallery" href="/images/EFL/2023/maven2.png" title="/images/EFL/2023/maven2.png" data-thumbnail="/images/EFL/2023/maven2.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/EFL/2023/maven2.png"
+            data-srcset="/images/EFL/2023/maven2.png, /images/EFL/2023/maven2.png 1.5x, /images/EFL/2023/maven2.png 2x"
+            data-sizes="auto"
+            alt="/images/EFL/2023/maven2.png" />
+    </a>
+<strong>2.IDEA配置Maven运行环境的具体位置:</strong><br>
+<a class="lightgallery" href="/images/EFL/2023/maven3.png" title="/images/EFL/2023/maven3.png" data-thumbnail="/images/EFL/2023/maven3.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/EFL/2023/maven3.png"
+            data-srcset="/images/EFL/2023/maven3.png, /images/EFL/2023/maven3.png 1.5x, /images/EFL/2023/maven3.png 2x"
+            data-sizes="auto"
+            alt="/images/EFL/2023/maven3.png" />
+    </a><br>
+<strong>3.创建Maven项目:</strong><br>
+<a class="lightgallery" href="/images/EFL/2023/maven4.png" title="/images/EFL/2023/maven4.png" data-thumbnail="/images/EFL/2023/maven4.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/EFL/2023/maven4.png"
+            data-srcset="/images/EFL/2023/maven4.png, /images/EFL/2023/maven4.png 1.5x, /images/EFL/2023/maven4.png 2x"
+            data-sizes="auto"
+            alt="/images/EFL/2023/maven4.png" />
+    </a>
+<a class="lightgallery" href="/images/EFL/2023/maven5.png" title="/images/EFL/2023/maven5.png" data-thumbnail="/images/EFL/2023/maven5.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/EFL/2023/maven5.png"
+            data-srcset="/images/EFL/2023/maven5.png, /images/EFL/2023/maven5.png 1.5x, /images/EFL/2023/maven5.png 2x"
+            data-sizes="auto"
+            alt="/images/EFL/2023/maven5.png" />
+    </a><br>
+<strong>4.创建Maven项目能的报错及解决方案:</strong><br>
+<a class="lightgallery" href="/images/EFL/2023/maven6.png" title="/images/EFL/2023/maven6.png" data-thumbnail="/images/EFL/2023/maven6.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/EFL/2023/maven6.png"
+            data-srcset="/images/EFL/2023/maven6.png, /images/EFL/2023/maven6.png 1.5x, /images/EFL/2023/maven6.png 2x"
+            data-sizes="auto"
+            alt="/images/EFL/2023/maven6.png" />
+    </a><br>
+<strong>5.Pom(project-object-module)项目对象模型:</strong><br>
+<a class="lightgallery" href="/images/EFL/2023/maven7.png" title="/images/EFL/2023/maven7.png" data-thumbnail="/images/EFL/2023/maven7.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/EFL/2023/maven7.png"
+            data-srcset="/images/EFL/2023/maven7.png, /images/EFL/2023/maven7.png 1.5x, /images/EFL/2023/maven7.png 2x"
+            data-sizes="auto"
+            alt="/images/EFL/2023/maven7.png" />
+    </a>
+<strong>6.项目(生命周期)的构建:</strong><br>
+<a class="lightgallery" href="/images/EFL/2023/maven8.png" title="/images/EFL/2023/maven8.png" data-thumbnail="/images/EFL/2023/maven8.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/EFL/2023/maven8.png"
+            data-srcset="/images/EFL/2023/maven8.png, /images/EFL/2023/maven8.png 1.5x, /images/EFL/2023/maven8.png 2x"
+            data-sizes="auto"
+            alt="/images/EFL/2023/maven8.png" />
+    </a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-05-10</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/maven/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://azad-eng.space/maven/" data-title="Maven" data-hashtags="maven"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://azad-eng.space/maven/" data-hashtag="maven"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://azad-eng.space/maven/" data-title="Maven"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://azad-eng.space/maven/" data-title="Maven"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://azad-eng.space/maven/" data-title="Maven"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/maven/">maven</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hugo/" class="prev" rel="prev" title="hugo建站笔记"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>hugo建站笔记</a>
+            <a href="/badminton/" class="next" rel="next" title="羽毛球初学者指南">羽毛球初学者指南<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="waline"></div>
+        <script src='https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+        <script>
+		    	new Waline({
+		    	  el: '#waline',
+				  meta: ["nick","mail","link"],
+		    	  requiredMeta: ["nick","mail"],
+		    	  login: "",
+				  placeholder: "评论前需注册并登录，望见谅~",
+		    	  serverURL: "https://waline-test-2639v4859-azad-eng.vercel.app/",
+		    	  avatarCDN: "https://sdn.geekzu.org/avatar/",
+		    	  pageSize:  20 ,
+		    	  avatar: "retro",
+		    	  lang: "zh-CN",
+				  visitor:  true ,
+				  highlight:  true ,
+				  uploadImage:  false 
+		    	});
+		    </script></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container">
+            <div class="footer-line">
+                <span id="run-time"></span>
+            </div><div class="footer-line"><a href="https://notbyai.fyi" target="_blank" rel="noopener noreffer"><img class="notbyai" src="/images/svg/Written-white.svg" alt="Written by human, not by AI"> <img class="notbyai" src="/images/svg/Produced-black.svg" alt="Produced by human, not by AI"></a></div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/Azad-eng" target="_blank">Azad-eng</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div class="sidebar_wo">
+          <div class="sidebar_wo" id="lamu">
+            <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png" alt="拉姆" 
+            onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuB.png'" 
+            onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png'" title="回到顶部">
+          </div>
+          <div id="leimu">
+            <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png" alt="雷姆" 
+            onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuB.png'" 
+            onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png'" title="回到底部">
+          </div>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script><script type="text/javascript" src="/js/custom.js"></script></body>
+</html>

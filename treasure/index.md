@@ -35,6 +35,12 @@ url="https://regexr.com/"
 logo="/images/share.jpg"
 word="学习、构建和测试正则表达式">}}
 
+{{< friend
+name="iloveimg"
+url="https://www.iloveimg.com/zh-cn/compress-image/compress-png"
+logo="https://www.iloveimg.com/img/iloveimg.svg"
+word="在线压缩PNG图像工具">}}
+
 
 ### API文档速查~🔎
 {{< friend

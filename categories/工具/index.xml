@@ -1,15 +1,31 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>工具 - 分类 -  ~-~-~-&gt;_&lt;) </title>
-        <link>/categories/%E5%B7%A5%E5%85%B7/</link>
+        <link>https://azad-eng.space/categories/%E5%B7%A5%E5%85%B7/</link>
         <description>工具 - 分类 -  ~-~-~-&gt;_&lt;) </description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1574726350@qq.com (Azad-eng)</managingEditor>
-            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 26 Feb 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="/categories/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
-    <title>正则表达式初识</title>
-    <link>/regex/</link>
+            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 10 May 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://azad-eng.space/categories/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+    <title>hugo建站笔记</title>
+    <link>https://azad-eng.space/hugo/</link>
+    <pubDate>Wed, 10 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>https://azad-eng.space/hugo/</guid>
+    <description><![CDATA[BLOG相关 1. 打开本地博客 1 $ hugo server -e production --disableFastRender --port=1515 -D 2. 更新博客网站内容流程 step1- 关闭]]></description>
+</item>
+<item>
+    <title>git&amp;github</title>
+    <link>https://azad-eng.space/git/</link>
     <pubDate>Sun, 26 Feb 2023 00:00:00 &#43;0000</pubDate>
     <author>Azad-eng</author>
-    <guid>/regex/</guid>
+    <guid>https://azad-eng.space/git/</guid>
+    <description><![CDATA[Github配置ssh免密登录 step1 生成密钥对 1 $ ssh-keygen -t rsa -C &#34;test@email.com&#34; step2 检查电脑系统用]]></description>
+</item>
+<item>
+    <title>正则表达式初识</title>
+    <link>https://azad-eng.space/regex/</link>
+    <pubDate>Sun, 26 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>https://azad-eng.space/regex/</guid>
     <description><![CDATA[Regex正则表达式 组成 （1）字符类 1.字符集：[ABC] 匹配集合中的任]]></description>
 </item>
 </channel>

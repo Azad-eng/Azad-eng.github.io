@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>hugo - 标签 -  ~-~-~-&gt;_&lt;) </title>
+        <link>https://azad-eng.space/tags/hugo/</link>
+        <description>hugo - 标签 -  ~-~-~-&gt;_&lt;) </description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1574726350@qq.com (Azad-eng)</managingEditor>
+            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 10 May 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://azad-eng.space/tags/hugo/" rel="self" type="application/rss+xml" /><item>
+    <title>hugo建站笔记</title>
+    <link>https://azad-eng.space/hugo/</link>
+    <pubDate>Wed, 10 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>https://azad-eng.space/hugo/</guid>
+    <description><![CDATA[BLOG相关 1. 打开本地博客 1 $ hugo server -e production --disableFastRender --port=1515 -D 2. 更新博客网站内容流程 step1- 关闭]]></description>
+</item>
+</channel>
+</rss>

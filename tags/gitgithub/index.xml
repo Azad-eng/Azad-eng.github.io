@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>git&amp;github - 标签 -  ~-~-~-&gt;_&lt;) </title>
+        <link>https://azad-eng.space/tags/gitgithub/</link>
+        <description>git&amp;github - 标签 -  ~-~-~-&gt;_&lt;) </description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1574726350@qq.com (Azad-eng)</managingEditor>
+            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 26 Feb 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://azad-eng.space/tags/gitgithub/" rel="self" type="application/rss+xml" /><item>
+    <title>git&amp;github</title>
+    <link>https://azad-eng.space/git/</link>
+    <pubDate>Sun, 26 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>Azad-eng</author>
+    <guid>https://azad-eng.space/git/</guid>
+    <description><![CDATA[Github配置ssh免密登录 step1 生成密钥对 1 $ ssh-keygen -t rsa -C &#34;test@email.com&#34; step2 检查电脑系统用]]></description>
+</item>
+</channel>
+</rss>

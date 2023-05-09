@@ -3,11 +3,11 @@
 
 ### 导航
 **创建自定义控件的不同方法**
-* [使用CSS重新设置现有控件的样式](http://azad-eng.github.io/customcontrols01/)
-* [组合现有控件来创建自定义控件](http://azad-eng.github.io/customcontrols02/)
-* [扩展现有控件](http://azad-eng.github.io/customcontrols03/)
+* [一、使用CSS重新设置现有控件的样式](http://azad-eng.github.io/customcontrols01/)
+* [二、组合现有控件来创建自定义控件](http://azad-eng.github.io/customcontrols02/)
+* [三、扩展现有控件](http://azad-eng.github.io/customcontrols03/)
 * [使用Control plus Skin类](http://azad-eng.github.io/customcontrols04/)
-* [使用Region类](http://azad-eng.github.io/customcontrols05/)
+* [五、使用Region类](http://azad-eng.github.io/customcontrols05/)
 
 ### 使用Control plus Skin的实现类来自定义全新的组件
 `Control 将包含所有逻辑，而 Skin 将包含所有 UI 相关代码`

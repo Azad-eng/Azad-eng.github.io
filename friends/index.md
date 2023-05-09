@@ -2,7 +2,45 @@
 
 {{< friend-css >}}
 
-### JAVA
+### ★^/^★~
+
+{{< friend
+name="阮一峰的网络日志"
+url="https://www.ruanyifeng.com/blog/"
+logo="https://www.ruanyifeng.com/blog/images/person2.jpg"
+word="这里记录每周值得分享的科技内容，周五发布。">}}
+
+{{< friend
+name="大大的小蜗牛"
+url="https://eallion.com/"
+logo="https://eallion.com/eallion.png"
+word="机会总是垂青于有准备的人">}}
+
+{{< friend
+name="Elizen"
+url="https://elizen.me/"
+logo="/images/alien.png"
+word="There is only one thing in the world worse than being talked about, and that is not being talked about.">}}
+
+{{< friend
+name="雨临Lewis的博客"
+url="https://lewky.cn/"
+logo="https://lewky.cn/images/avatar.jpg"
+word="不想当写手的码农不是好咸鱼_(xз」∠)_">}}
+
+{{< friend
+name="巴托什切哈诺夫斯基"
+url="https://ciechanow.ski/archives/"
+logo="/images/alien.png"
+word="知识型博客">}}
+
+{{< friend
+name="发现内在的自然"
+url="http://jiaoyu.org/ziran/"
+logo="/images/alien.png"
+word="人生中不存在任何必须的事情，不管什么事，只要允许它存在，它就不是一个问题">}}
+
+### coding~
 
 {{< friend
 name="Java 全栈知识体系"
@@ -29,6 +67,18 @@ logo="/images/alien.png"
 word="">}}
 
 {{< friend
+name="张小凯的博客"
+url="https://jasonkayzk.github.io/"
+logo="https://jasonkayzk.github.io/images/avatar4.jpg"
+word="">}}
+
+{{< friend
+name="manateelazycat"
+url="https://manateelazycat.github.io/"
+logo="/images/alien.png"
+word="生活可以更简单, 欢迎来到我的开源世界">}}
+
+{{< friend
 name="风祈的时光录"
 url="https://imlql.cn/"
 logo="https://npm.elemecdn.com/lql_static@latest/avatar/1.jpg"
@@ -40,30 +90,11 @@ url="https://zuobiao-x.github.io/"
 logo="https://zuobiao-x.github.io/assets/img/touxiang.jpg"
 word="天下事有难易乎 > 为之，则难者亦易 > 不为，则易者亦难">}}
 
-### 大佬专用
-{{< friend
-name="雨临Lewis的博客"
-url="https://lewky.cn/"
-logo="/images/alien.png"
-word="不想当写手的码农不是好咸鱼_(xз」∠)_">}}
-
-{{< friend
-name="慕雪的寒舍"
-url="https://ewait.gitee.io/"
-logo="https://ewait.gitee.io/images/myPNG.jpg"
-word="吾心如一，慕雪纷纷">}}
-
 {{< friend
 name="Cqh-i"
 url="https://cqh-i.github.io/"
 logo="https://cqh-i.github.io/assets/blogImg/Mort1.png"
 word="你的问题,主要在于读书不多而想得太多">}}
-
-{{< friend
-name="Sukun的博客"
-url="https://sukun.xyz"
-logo=https://www.sukun.xyz/images/avatar.png"
-word="Sukun的博客，记录学习历程！">}}
 
 {{< friend
 name="Barney’s Blog"
@@ -77,37 +108,10 @@ url="https://ilovey.live"
 logo="https://uss.ilovey.live/img/avatar.jpg"
 word="读万卷书，行万里路，赚很多钱">}}
 
-### 3D打印
+### others~
 {{< friend
 name="概念清楚吧"
-url="https://sukun.xyz"
+url="https://conceptclear.cn/"
 logo="/images/alien.png"
 word="写点平时科研的时候会关注的问题">}}
-
-### BLOG
-
-{{< friend
-name="阮一峰的网络日志"
-url="https://www.ruanyifeng.com/blog/"
-logo="https://www.ruanyifeng.com/blog/images/person2.jpg"
-word="这里记录每周值得分享的科技内容，周五发布。">}}
-
-{{< friend
-name="巴托什切哈诺夫斯基"
-url="https://ciechanow.ski/archives/"
-logo="/images/alien.png"
-word="知识型博客">}}
-
-### 官方
-{{< friend
-name="dillonzq/LoveIt"
-url="/alien.png"
-logo="https://github.githubassets.com/images/mona-loading-default-static.svg"
-word="Hugo-LoveIt主题github">}}
-
-{{< friend
-name="LoveIt官方文档"
-url="https://hugoloveit.com/"
-logo="https://cdn.jsdelivr.net/gh/dillonzq/LoveIt@master/exampleSite/assets/images/avatar.png"
-word="Hugo-LoveIt主题官方文档">}}
 

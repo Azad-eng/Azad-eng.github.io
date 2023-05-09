@@ -1,47 +1,47 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>JavaFx - 分类 -  ~-~-~-&gt;_&lt;) </title>
-        <link>/categories/javafx/</link>
+        <link>https://azad-eng.space/categories/javafx/</link>
         <description>JavaFx - 分类 -  ~-~-~-&gt;_&lt;) </description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1574726350@qq.com (Azad-eng)</managingEditor>
-            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 Feb 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="/categories/javafx/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>1574726350@qq.com (Azad-eng)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 Feb 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://azad-eng.space/categories/javafx/" rel="self" type="application/rss+xml" /><item>
     <title>JavaFx自定义控件（五）- 使用Region类来自定义全新的组件</title>
-    <link>/customcontrols05/</link>
+    <link>https://azad-eng.space/customcontrols05/</link>
     <pubDate>Sun, 05 Feb 2023 00:00:00 &#43;0000</pubDate>
     <author>Azad-eng</author>
-    <guid>/customcontrols05/</guid>
-    <description><![CDATA[导航 创建自定义控件的不同方法 使用CSS重新设置现有控件的样式 组合现有控件]]></description>
+    <guid>https://azad-eng.space/customcontrols05/</guid>
+    <description><![CDATA[导航 创建自定义控件的不同方法 一、使用CSS重新设置现有控件的样式 二、组合]]></description>
 </item>
 <item>
     <title>JavaFx自定义控件（四）- 使用Control plus Skin的实现类来自定义全新的组件</title>
-    <link>/customcontrols04/</link>
+    <link>https://azad-eng.space/customcontrols04/</link>
     <pubDate>Wed, 08 Jun 2022 00:00:00 &#43;0000</pubDate>
     <author>Azad-eng</author>
-    <guid>/customcontrols04/</guid>
-    <description><![CDATA[导航 创建自定义控件的不同方法 使用CSS重新设置现有控件的样式 组合现有控件]]></description>
+    <guid>https://azad-eng.space/customcontrols04/</guid>
+    <description><![CDATA[导航 创建自定义控件的不同方法 一、使用CSS重新设置现有控件的样式 二、组合]]></description>
 </item>
 <item>
     <title>JavaFx自定义控件（三）- 扩展现有控件来创建自定义控件</title>
-    <link>/customcontrols03/</link>
+    <link>https://azad-eng.space/customcontrols03/</link>
     <pubDate>Mon, 06 Jun 2022 11:15:38 &#43;0800</pubDate>
     <author>Azad-eng</author>
-    <guid>/customcontrols03/</guid>
-    <description><![CDATA[导航 创建自定义控件的不同方法 使用CSS重新设置现有控件的样式 组合现有控件]]></description>
+    <guid>https://azad-eng.space/customcontrols03/</guid>
+    <description><![CDATA[导航 创建自定义控件的不同方法 一、使用CSS重新设置现有控件的样式 二、组合]]></description>
 </item>
 <item>
     <title>JavaFx自定义控件（二）- 组合现有控件来创建自定义控件</title>
-    <link>/customcontrols02/</link>
+    <link>https://azad-eng.space/customcontrols02/</link>
     <pubDate>Mon, 06 Jun 2022 00:00:00 &#43;0000</pubDate>
     <author>Azad-eng</author>
-    <guid>/customcontrols02/</guid>
-    <description><![CDATA[导航 创建自定义控件的不同方法 使用CSS重新设置现有控件的样式 组合现有控件]]></description>
+    <guid>https://azad-eng.space/customcontrols02/</guid>
+    <description><![CDATA[导航 创建自定义控件的不同方法 一、使用CSS重新设置现有控件的样式 二、组合]]></description>
 </item>
 <item>
     <title>JavaFx自定义控件（一）- 使用CSS重新设置现有控件的样式</title>
-    <link>/customcontrols01/</link>
+    <link>https://azad-eng.space/customcontrols01/</link>
     <pubDate>Mon, 06 Jun 2022 00:00:00 &#43;0000</pubDate>
     <author>Azad-eng</author>
-    <guid>/customcontrols01/</guid>
+    <guid>https://azad-eng.space/customcontrols01/</guid>
     <description><![CDATA[前言 为什么需要自定义控件？ JavaFx中很多内置控件的代码都是私有的或最]]></description>
 </item>
 </channel>

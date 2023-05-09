@@ -3,11 +3,11 @@
 
 ### 导航
 **创建自定义控件的不同方法**
-* [使用CSS重新设置现有控件的样式](http://azad-eng.github.io/customcontrols01/)
-* [组合现有控件来创建自定义控件](http://azad-eng.github.io/customcontrols02/)
-* [扩展现有控件](http://azad-eng.github.io/customcontrols03/)
+* [一、使用CSS重新设置现有控件的样式](http://azad-eng.github.io/customcontrols01/)
+* [二、组合现有控件来创建自定义控件](http://azad-eng.github.io/customcontrols02/)
+* [三、扩展现有控件](http://azad-eng.github.io/customcontrols03/)
 * [使用Control plus Skin类](http://azad-eng.github.io/customcontrols04/)
-* [使用Region类](http://azad-eng.github.io/customcontrols05/)
+* [五、使用Region类](http://azad-eng.github.io/customcontrols05/)
 
 {{<admonition type="info" title="前言">}}
 上一篇文章展示了如何基于控件加皮肤方法创建自定义控件，这对于构建控件库非常有用。这一章将展示如何创建基于 JavaFX Region 类的 JavaFX 自定义控件；
