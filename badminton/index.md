@@ -18,24 +18,28 @@
 {{< /admonition >}}  
 
 我们的第一个羽毛球技巧是确保正确热身对任何运动都非常重要。你需要让你的肌肉舒适温暖，这样它们才能轻松伸展。这将有助于避免不必要的伤害，
-并让您为快节奏的羽毛球运动做好准备。**那么如何正确热身和冷却呢？**  
-简单的答案是，你需要做一个使用动态伸展运动的全身热身运动，在比赛前可能需要大约 5-10 分钟，然后使用静态伸展运动进行全身放松，持续时间大致相同。  
+并让您为快节奏的羽毛球运动做好准备。  
+**那么如何正确热身和冷却呢？**  
+简单的答案是：需要做一个使用动态伸展的全身热身运动，可能需要大约5-10分钟，然后使用静态伸展运动进行全身放松，持续时间大致相同。  
 
 #### 运动前的热身  
 热身的套路和方法数不胜数，但它们的共同点是都涉及动态拉伸。动态拉伸是在运动时加热和拉伸您的肌肉，而不是站在原地，动态拉伸的例子包括各种
 弓箭步、摆腿、下蹲、跳跃等。像[hanging the bird](https://www.youtube.com/watch?v=8DWy94Rf3lY&t=212s)这样的视频是教练帮助初学者的有用工具，
-“动态热身”程序对每个人来说都是至关重要的。这样我们就可以拉伸肌肉放松，运动会让我们的心脏跳动并开始让我们暖和起来，静态拉伸会拉伸肌肉，但不会让你的身体热身。  
+“动态热身”程序对每个人来说都是至关重要的。这样我们就可以拉伸肌肉放松，运动会让我们的心脏跳动并开始让我们暖和起来，而静态拉伸只会拉伸肌肉，但不会让你的身体热身。  
 以下是一些典型的热身动作，它是一种很好的快速热身，可以锻炼所有主要肌肉群，尤其适合打羽毛球：   
 {{<admonition type=tip title="动态热身程序" >}} 
 `50个开合跳`  
-`10次弯曲弓箭步（每条腿5次）`  
-`10个眼镜蛇`  
+`10次扭转弓步（每条腿5次）`  
 `20次手和膝盖手臂伸展`  
 `5个哈拉萨纳斯`  
 `50个高膝盖`  
 `10次深蹲跳`  
 {{< /admonition >}}  
 
+- 开合跳
+{{< image src="/images/life/badminton/Jackpot.gif" caption="" >}}
+- 扭转弓步
+{{< image src="/images/life/badminton/lungeTwist.png" caption="" >}}
 
 #### 运动后的放松和拉伸
 与比赛前正确热身一样重要的是比赛后的放松和伸展运动。作为初学者，确保慢慢冷静下来并随后伸展肌肉非常重要。
@@ -58,7 +62,10 @@
 这将足以锻炼身体的所有部位，对于羽毛球运动来说，下半身尤为重要，所有的弓步和扭转动作都需要臀部和腿部具有良好的柔韧性。  
 
 ### 二、学会握拍和基础发球  
+[如何握羽毛球拍——正确的羽毛球握拍](https://www.badmintonsbest.com/blog/how-to-hold-a-badminton-racquet/)
+[如何改进羽毛球短发球（7 个步骤）](https://www.badmintonsbest.com/blog/improve-short-serve-in-badminton/)
 ### 三、学习一些基础击球、接球和步法  
+[初学者羽毛球练习 - 掌握基础知识的 11 个练习](https://www.badmintonsbest.com/blog/badminton-drills-for-beginners/)
 良好的步法就像了解一种语言的字母表
 #### 可以通过观看高级玩家的视频来学习，比如下面的林丹完美的步法：
 {{< youtube 4b_LuXfKwRE >}}
@@ -84,17 +91,42 @@
 比如，来自Coaching Badminton的Lee Jae Bok有一段很棒的视频，其中谈到了击球后的恢复：
 {{< youtube gDvfM64mymw >}}
 
-### 加强手腕
+#### 加强手腕
 提高比赛水平的最重要方法是加强手腕。你的反手、正手、扣球、吊球都需要一个强壮而灵活的手腕。所以尽可能多地使用你的手腕。
 例如，当你想打反手时，不要挥动你的整个手臂，而是尽量用你的手腕。有多种练习程序可以改善您的手腕。
 
-### 有策略地玩球：
+#### 有策略地玩球：
 - 你不需要想出宏大的计划，但玩的时候要聪明。你应该根据自己的优势发挥，同时，你应该牢记对手的优势和劣势。如果对方的正手防守好，反手不好，
 那他的正手杀球就没有意义了。这是你需要聪明的地方。  
 - 将球打到对手必须跑动的地方/很难还击
+- [双打羽毛球制胜秘诀（策略、战术和技巧）](https://www.badmintonsbest.com/blog/badminton-tips-for-doubles/)
 
 ### 五、掌握一些练习提升方法  
 #### 墙练习
+#### Here are Badminton drills you can do at home:
+     Ladder drills
+     Fast feet exercises
+     Six shuttles shuttle run
+     Six corners footwork shadowing
+     Explosive split-step drill
+     The wall drill
+     Changing grip
+     Finger and forearm power
+     Round the clock defensive shadow
+     Overhead stroke practice
+     Shuttle juggling
+#### 在家练习（中文版）:
+     阶梯钻
+     快速足部练习
+     六班车穿梭跑
+     六角步法阴影
+     爆破分步钻
+     墙钻
+     改变抓地力
+     手指和前臂力量
+     全天候防御阴影
+     过顶划水练习
+     穿梭杂耍
 #### 建立反馈
 
 ### 六、观看一些优质的教学视频  
@@ -187,3 +219,4 @@ Shuttle Life 的内容因其标志性的视频风格而在教授人们羽毛球�
 * [13 Essential Badminton Tips for Beginners (To Improve Fast)](https://www.badmintonsbest.com/blog/badminton-tips-for-beginners/#always-warm-up-properly)
 * [The Best Badminton YouTube Channels You Should Be Watching](https://www.badmintonsbest.com/blog/best-badminton-youtube-channels/)
 * [How to Warm-Up and Cooldown Properly to Avoid Injury?](https://www.badmintonsbest.com/blog/how-to-warm-up-and-cooldown/)
+* [Badminton Drills at Home [Improve with Practical, Effective Exercises]](https://www.badmintonsbest.com/blog/badminton-drills-at-home/)

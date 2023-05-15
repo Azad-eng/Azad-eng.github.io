@@ -17,5 +17,11 @@ logo="/images/read/christophe.jpg"
 word="❤❤❤Jean-Christophe">}}
 
 ### 其他~
+{{< friend
+name="英语魔法师之语法俱乐部"
+url=/English/
+logo="/images/read/English.jpg"
+word="❤❤❤旋元佑">}}
+
 
 
